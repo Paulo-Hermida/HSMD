@@ -1,0 +1,46 @@
+%%shell
+################################################################################
+# INSTALL NANO, MC
+################################################################################
+apt-get install nano
+alias python=python3 
+python --version
+# cd /content/drive/MyDrive/
+# git clone https://github.com/facebookresearch/mmf.git
+cd /content/drive/MyDrive/mmf/
+pip install --editable .
+ 
+#pip install git+https://github.com/facebookresearch/mmf.git 
+################################################################################
+# Importa Dataset hateful memes
+################################################################################
+
+
+%%shell
+#export TORCH_HOME=/content/drive/MyDrive/cache/
+ cd /content/drive/MyDrive/
+## #zip cache.zip cache/
+## date
+ cp cache.zip /content/sample_data/
+## date
+ cd /content/sample_data/
+ unzip cache.zip
+## date 
+ export TORCH_HOME=/content/sample_data/cache/
+cd /content/drive/MyDrive/
+ 
+ 
+ 
+ 
+#mmf_run config=projects/hateful_memes/configs/unimodal/image.yaml model=unimodal_image dataset=hateful_memes run_type=train training.max_updates=10000 training.tensorboard=true 
+#mmf_run config=projects/hateful_memes/configs/unimodal/text.yaml model=unimodal_text dataset=hateful_memes run_type=train_val training.max_updates=10000 training.tensorboard=true 
+#mmf_run config=projects/hateful_memes/configs/unimodal/with_features.yaml model=unimodal_image dataset=hateful_memes run_type=train_val  training.max_updates=10000 training.tensorboard=true 
+#mmf_run config=projects/hateful_memes/configs/late_fusion/defaults.yaml model=late_fusion dataset=hateful_memes run_type=train_val training.max_updates=10000 training.tensorboard=true 
+
+
+mmf_run config=projects/hateful_memes/configs/concat_bert/defaults.yaml model=concat_bert dataset=hateful_memes run_type=train_val training.max_updates=10000 training.tensorboard=true 
+mmf_run config=projects/hateful_memes/configs/mmbt/with_features.yaml model=mmbt dataset=hateful_memes run_type=train_val training.max_updates=10000 training.tensorboard=true 
+mmf_run config=projects/hateful_memes/configs/vilbert/direct.yaml model=vilbert dataset=hateful_memes run_type=train_val training.max_updates=10000 training.tensorboard=true 
+
+
+
