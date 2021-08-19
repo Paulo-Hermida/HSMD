@@ -31,7 +31,6 @@
     <br />
   </p>
   <h2 align="center">Hate Speech Memes Detecting</h2>
-
 </p>
 
 
@@ -66,12 +65,14 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Methods for detecting hate speech in memes have become vital for many social media companies. Memes reflect our society, they are a quick way to transfer ideas, events, or other content from the real world to the digital one. Massively created, memes reproduce like viruses and aim to get people's attention and thinking. They are powerful tools, that, when used to spread hate speech, are able to have global reach. The task of detecting hate speech in memes is extremely challenging, especially due to their multimodal nature, i.e., they have two different sources: image and text. Consequently, when dealing with memes, a classification model needs to tackle both components in order to classify them as hateful or not-hateful. This project contributes to the effort to solve this task. 
+<p align="justify">
+Methods for detecting hate speech in memes have become vital for many social media companies. Memes reflect our society, they are a quick way to transfer ideas, events, or other content from the real world to the digital one. Massively created, memes reproduce like viruses and aim to get people's attention and thinking. They are powerful tools, that, when used to spread hate speech, are able to have global reach. The task of detecting hate speech in memes is extremely challenging, especially due to their multimodal nature, i.e., they have two different sources: image and text. Consequently, when dealing with memes, a classification model needs to tackle both components in order to classify them as hateful or not-hateful. This project contributes to the effort to solve this task. </p> 
+
 ### Built With
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [MMF](https://github.com/facebookresearch/mmf)
+* [Pytorch-Lightning](https://github.com/PyTorchLightning/pytorch-lightning)
 * [Laravel](https://laravel.com)
 
 
