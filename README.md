@@ -15,14 +15,6 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -38,6 +30,8 @@
     Programa de Pós Graduação em Informática
     <br />
   </p>
+  <h2 align="center">Hate Speech Memes Detecting</h2>
+
 </p>
 
 
@@ -72,20 +66,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
-
+Methods for detecting hate speech in memes have become vital for many social media companies. Memes reflect our society, they are a quick way to transfer ideas, events, or other content from the real world to the digital one. Massively created, memes reproduce like viruses and aim to get people's attention and thinking. They are powerful tools, that, when used to spread hate speech, are able to have global reach. The task of detecting hate speech in memes is extremely challenging, especially due to their multimodal nature, i.e., they have two different sources: image and text. Consequently, when dealing with memes, a classification model needs to tackle both components in order to classify them as hateful or not-hateful. This project contributes to the effort to solve this task. 
 ### Built With
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
