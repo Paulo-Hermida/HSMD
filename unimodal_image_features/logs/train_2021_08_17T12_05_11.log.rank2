@@ -1,0 +1,129 @@
+2021-08-17T12:05:11 | INFO | mmf : Logging to: ./save/logs/train_2021_08_17T12_05_11.log.rank2
+2021-08-17T12:05:11 | INFO | mmf_cli.run : Namespace(config_override=None, local_rank=None, opts=['config=./projects/hateful_memes/configs/unimodal/with_features.yaml', 'model=unimodal_image', 'dataset=hateful_memes', 'run_type=train_val', 'training.tensorboard=true', 'training.batch_size=96', 'training.max_updates=10000'])
+2021-08-17T12:05:11 | INFO | mmf_cli.run : Torch version: 1.9.0+cu102
+2021-08-17T12:05:11 | INFO | mmf.utils.general : CUDA Device 2 is: Tesla V100-DGXS-16GB
+2021-08-17T12:05:11 | INFO | mmf_cli.run : Using seed 11973498
+2021-08-17T12:05:11 | INFO | mmf.trainers.mmf_trainer : Loading datasets
+2021-08-17T12:05:12 | INFO | torchtext.vocab : Loading vectors from /home/phermida/cache/mmf/glove.6B.300d.txt.pt
+2021-08-17T12:05:14 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-17T12:05:14 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-17T12:05:14 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-17T12:05:14 | INFO | mmf.trainers.mmf_trainer : Loading model
+2021-08-17T12:05:14 | INFO | mmf.trainers.mmf_trainer : Loading optimizer
+2021-08-17T12:05:14 | INFO | mmf.trainers.mmf_trainer : Loading metrics
+2021-08-17T12:05:14 | INFO | mmf.trainers.core.device : Using PyTorch DistributedDataParallel
+2021-08-17T12:05:14 | INFO | mmf.trainers.mmf_trainer : ===== Model =====
+2021-08-17T12:05:14 | INFO | mmf.trainers.mmf_trainer : DistributedDataParallel(
+  (module): UnimodalModal(
+    (base): UnimodalBase(
+      (encoder): FinetuneFasterRcnnFpnFc7(
+        (lc): Linear(in_features=2048, out_features=2048, bias=True)
+      )
+    )
+    (classifier): MLPClassifer(
+      (layers): ModuleList(
+        (0): Linear(in_features=2048, out_features=768, bias=True)
+        (1): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+        (3): Dropout(p=0.5, inplace=False)
+        (4): Linear(in_features=768, out_features=768, bias=True)
+        (5): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (6): ReLU()
+        (7): Dropout(p=0.5, inplace=False)
+        (8): Linear(in_features=768, out_features=2, bias=True)
+      )
+    )
+    (losses): Losses(
+      (losses): ModuleList(
+        (0): MMFLoss(
+          (loss_criterion): CrossEntropyLoss(
+            (loss_fn): CrossEntropyLoss()
+          )
+        )
+      )
+    )
+  )
+)
+2021-08-17T12:05:14 | INFO | mmf.utils.general : Total Parameters: 6365186. Trained Parameters: 6365186
+2021-08-17T12:05:14 | INFO | mmf.trainers.core.training_loop : Starting training...
+2021-08-17T12:05:28 | INFO | root : Reducer buckets have been rebuilt in this iteration.
+2021-08-17T12:07:03 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:07:03 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:07:03 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:07:17 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:07:17 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:08:47 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:08:47 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:08:47 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:09:01 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:09:01 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:10:31 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:10:31 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:10:31 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:10:45 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:10:45 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:12:19 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:12:19 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:12:19 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:12:33 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:12:33 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:14:05 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:14:05 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:14:05 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:14:19 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:14:19 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:15:49 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:15:49 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:15:49 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:16:04 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:16:04 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:18:00 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:18:00 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:18:00 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:18:14 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:18:14 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:19:44 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:19:44 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:19:44 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:19:59 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:19:59 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:21:32 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:21:32 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:21:32 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:21:46 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:21:46 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:23:21 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-17T12:23:21 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-17T12:23:21 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:23:35 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:23:35 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:23:56 | INFO | mmf.trainers.core.training_loop : Stepping into final validation check
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Restoring checkpoint
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Loading checkpoint
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.base.encoder.lc.weight from base.encoder.lc.weight
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.base.encoder.lc.bias from base.encoder.lc.bias
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.0.weight from classifier.layers.0.weight
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.0.bias from classifier.layers.0.bias
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.1.weight from classifier.layers.1.weight
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.1.bias from classifier.layers.1.bias
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.1.running_mean from classifier.layers.1.running_mean
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.1.running_var from classifier.layers.1.running_var
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.1.num_batches_tracked from classifier.layers.1.num_batches_tracked
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.4.weight from classifier.layers.4.weight
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.4.bias from classifier.layers.4.bias
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.5.weight from classifier.layers.5.weight
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.5.bias from classifier.layers.5.bias
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.5.running_mean from classifier.layers.5.running_mean
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.5.running_var from classifier.layers.5.running_var
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.5.num_batches_tracked from classifier.layers.5.num_batches_tracked
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.8.weight from classifier.layers.8.weight
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Will load key module.classifier.layers.8.bias from classifier.layers.8.bias
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Checkpoint loaded.
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Current num updates: 1000
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Current iteration: 1000
+2021-08-17T12:23:56 | INFO | mmf.utils.checkpoint : Current epoch: 12
+2021-08-17T12:23:56 | INFO | mmf.trainers.mmf_trainer : Starting inference on val set
+2021-08-17T12:23:56 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-17T12:24:09 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-17T12:24:09 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-17T12:24:10 | INFO | mmf.trainers.callbacks.logistics : Finished run in 18m 55s 894ms

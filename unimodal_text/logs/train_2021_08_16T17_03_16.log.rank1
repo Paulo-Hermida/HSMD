@@ -1,0 +1,7 @@
+2021-08-16T17:03:16 | INFO | mmf : Logging to: ./save/logs/train_2021_08_16T17_03_16.log.rank1
+2021-08-16T17:03:16 | INFO | mmf_cli.run : Namespace(config_override=None, local_rank=None, opts=['config=./projects/hateful_memes/configs/unimodal/text.yaml', 'model=unimodal_text', 'dataset=hateful_memes', 'run_type=train_val', 'training.tensorboard=true', 'training.batch_size=128', 'training.max_updates=10000'])
+2021-08-16T17:03:16 | INFO | mmf_cli.run : Torch version: 1.9.0+cu102
+2021-08-16T17:03:16 | INFO | mmf.utils.general : CUDA Device 1 is: Tesla V100-DGXS-16GB
+2021-08-16T17:03:16 | INFO | mmf_cli.run : Using seed 16639520
+2021-08-16T17:03:16 | INFO | mmf.trainers.mmf_trainer : Loading datasets
+2021-08-16T17:03:17 | INFO | torchtext.vocab : Loading vectors from /home/phermida/.cache/torch/mmf/glove.6B.300d.txt.pt

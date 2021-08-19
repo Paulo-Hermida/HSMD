@@ -1,0 +1,607 @@
+2021-08-18T08:46:25 | INFO | mmf : Logging to: ./save/logs/train_2021_08_18T08_46_25.log.rank2
+2021-08-18T08:46:25 | INFO | mmf_cli.run : Namespace(config_override=None, local_rank=None, opts=['config=projects/hateful_memes/configs/visual_bert/direct.yaml', 'model=visual_bert', 'dataset=hateful_memes', 'run_type=train_val', 'training.max_updates=10000', 'training.tensorboard=true', 'training.batch_size=96'])
+2021-08-18T08:46:25 | INFO | mmf_cli.run : Torch version: 1.9.0+cu102
+2021-08-18T08:46:25 | INFO | mmf.utils.general : CUDA Device 2 is: Tesla V100-DGXS-16GB
+2021-08-18T08:46:25 | INFO | mmf_cli.run : Using seed 25084389
+2021-08-18T08:46:25 | INFO | mmf.trainers.mmf_trainer : Loading datasets
+2021-08-18T08:46:27 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-18T08:46:27 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-18T08:46:27 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-18T08:46:27 | INFO | mmf.trainers.mmf_trainer : Loading model
+2021-08-18T08:46:35 | INFO | mmf.trainers.mmf_trainer : Loading optimizer
+2021-08-18T08:46:35 | INFO | mmf.trainers.mmf_trainer : Loading metrics
+2021-08-18T08:46:35 | INFO | mmf.trainers.core.device : Using PyTorch DistributedDataParallel
+2021-08-18T08:46:35 | INFO | mmf.trainers.mmf_trainer : ===== Model =====
+2021-08-18T08:46:35 | INFO | mmf.trainers.mmf_trainer : DistributedDataParallel(
+  (module): VisualBERT(
+    (model): VisualBERTForClassification(
+      (bert): VisualBERTBase(
+        (embeddings): BertVisioLinguisticEmbeddings(
+          (word_embeddings): Embedding(30522, 768, padding_idx=0)
+          (position_embeddings): Embedding(512, 768)
+          (token_type_embeddings): Embedding(2, 768)
+          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (token_type_embeddings_visual): Embedding(2, 768)
+          (position_embeddings_visual): Embedding(512, 768)
+          (projection): Linear(in_features=2048, out_features=768, bias=True)
+        )
+        (encoder): BertEncoderJit(
+          (layer): ModuleList(
+            (0): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (1): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (2): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (3): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (4): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (5): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (6): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (7): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (8): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (9): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (10): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (11): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (pooler): BertPooler(
+          (dense): Linear(in_features=768, out_features=768, bias=True)
+          (activation): Tanh()
+        )
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (classifier): Sequential(
+        (0): BertPredictionHeadTransform(
+          (dense): Linear(in_features=768, out_features=768, bias=True)
+          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+        )
+        (1): Linear(in_features=768, out_features=2, bias=True)
+      )
+    )
+    (losses): Losses(
+      (losses): ModuleList(
+        (0): MMFLoss(
+          (loss_criterion): CrossEntropyLoss(
+            (loss_fn): CrossEntropyLoss()
+          )
+        )
+      )
+    )
+  )
+)
+2021-08-18T08:46:35 | INFO | mmf.utils.general : Total Parameters: 112044290. Trained Parameters: 112044290
+2021-08-18T08:46:35 | INFO | mmf.trainers.core.training_loop : Starting training...
+2021-08-18T08:55:44 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T08:55:44 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T08:55:44 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T08:56:01 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T08:56:01 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:05:21 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:05:21 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:05:21 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:05:41 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:05:41 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:15:30 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:15:30 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:15:30 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:15:49 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:15:49 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:25:26 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:25:26 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:25:26 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:25:46 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:25:46 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:35:27 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:35:27 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:35:27 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:35:47 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:35:47 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:45:16 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:45:16 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:45:16 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:45:36 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:45:36 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:55:01 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:55:01 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:55:01 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:55:21 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:55:21 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:04:50 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T10:04:50 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T10:04:50 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T10:05:09 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T10:05:09 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:14:28 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T10:14:28 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T10:14:28 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T10:14:48 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T10:14:48 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:24:07 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T10:24:07 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T10:24:07 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T10:24:26 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T10:24:26 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:24:27 | INFO | mmf.trainers.core.training_loop : Stepping into final validation check
+2021-08-18T10:24:27 | INFO | mmf.utils.checkpoint : Restoring checkpoint
+2021-08-18T10:24:27 | INFO | mmf.utils.checkpoint : Loading checkpoint
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.position_ids from model.bert.embeddings.position_ids
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.word_embeddings.weight from model.bert.embeddings.word_embeddings.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.position_embeddings.weight from model.bert.embeddings.position_embeddings.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.token_type_embeddings.weight from model.bert.embeddings.token_type_embeddings.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.LayerNorm.weight from model.bert.embeddings.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.LayerNorm.bias from model.bert.embeddings.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.token_type_embeddings_visual.weight from model.bert.embeddings.token_type_embeddings_visual.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.position_embeddings_visual.weight from model.bert.embeddings.position_embeddings_visual.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.projection.weight from model.bert.embeddings.projection.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.projection.bias from model.bert.embeddings.projection.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.query.weight from model.bert.encoder.layer.0.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.query.bias from model.bert.encoder.layer.0.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.key.weight from model.bert.encoder.layer.0.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.key.bias from model.bert.encoder.layer.0.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.value.weight from model.bert.encoder.layer.0.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.value.bias from model.bert.encoder.layer.0.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.output.dense.weight from model.bert.encoder.layer.0.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.output.dense.bias from model.bert.encoder.layer.0.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.output.LayerNorm.weight from model.bert.encoder.layer.0.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.output.LayerNorm.bias from model.bert.encoder.layer.0.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.intermediate.dense.weight from model.bert.encoder.layer.0.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.intermediate.dense.bias from model.bert.encoder.layer.0.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.output.dense.weight from model.bert.encoder.layer.0.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.output.dense.bias from model.bert.encoder.layer.0.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.output.LayerNorm.weight from model.bert.encoder.layer.0.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.output.LayerNorm.bias from model.bert.encoder.layer.0.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.query.weight from model.bert.encoder.layer.1.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.query.bias from model.bert.encoder.layer.1.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.key.weight from model.bert.encoder.layer.1.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.key.bias from model.bert.encoder.layer.1.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.value.weight from model.bert.encoder.layer.1.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.value.bias from model.bert.encoder.layer.1.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.output.dense.weight from model.bert.encoder.layer.1.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.output.dense.bias from model.bert.encoder.layer.1.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.output.LayerNorm.weight from model.bert.encoder.layer.1.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.output.LayerNorm.bias from model.bert.encoder.layer.1.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.intermediate.dense.weight from model.bert.encoder.layer.1.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.intermediate.dense.bias from model.bert.encoder.layer.1.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.output.dense.weight from model.bert.encoder.layer.1.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.output.dense.bias from model.bert.encoder.layer.1.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.output.LayerNorm.weight from model.bert.encoder.layer.1.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.output.LayerNorm.bias from model.bert.encoder.layer.1.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.query.weight from model.bert.encoder.layer.2.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.query.bias from model.bert.encoder.layer.2.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.key.weight from model.bert.encoder.layer.2.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.key.bias from model.bert.encoder.layer.2.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.value.weight from model.bert.encoder.layer.2.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.value.bias from model.bert.encoder.layer.2.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.output.dense.weight from model.bert.encoder.layer.2.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.output.dense.bias from model.bert.encoder.layer.2.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.output.LayerNorm.weight from model.bert.encoder.layer.2.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.output.LayerNorm.bias from model.bert.encoder.layer.2.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.intermediate.dense.weight from model.bert.encoder.layer.2.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.intermediate.dense.bias from model.bert.encoder.layer.2.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.output.dense.weight from model.bert.encoder.layer.2.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.output.dense.bias from model.bert.encoder.layer.2.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.output.LayerNorm.weight from model.bert.encoder.layer.2.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.output.LayerNorm.bias from model.bert.encoder.layer.2.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.query.weight from model.bert.encoder.layer.3.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.query.bias from model.bert.encoder.layer.3.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.key.weight from model.bert.encoder.layer.3.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.key.bias from model.bert.encoder.layer.3.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.value.weight from model.bert.encoder.layer.3.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.value.bias from model.bert.encoder.layer.3.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.output.dense.weight from model.bert.encoder.layer.3.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.output.dense.bias from model.bert.encoder.layer.3.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.output.LayerNorm.weight from model.bert.encoder.layer.3.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.output.LayerNorm.bias from model.bert.encoder.layer.3.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.intermediate.dense.weight from model.bert.encoder.layer.3.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.intermediate.dense.bias from model.bert.encoder.layer.3.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.output.dense.weight from model.bert.encoder.layer.3.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.output.dense.bias from model.bert.encoder.layer.3.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.output.LayerNorm.weight from model.bert.encoder.layer.3.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.output.LayerNorm.bias from model.bert.encoder.layer.3.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.query.weight from model.bert.encoder.layer.4.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.query.bias from model.bert.encoder.layer.4.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.key.weight from model.bert.encoder.layer.4.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.key.bias from model.bert.encoder.layer.4.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.value.weight from model.bert.encoder.layer.4.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.value.bias from model.bert.encoder.layer.4.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.output.dense.weight from model.bert.encoder.layer.4.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.output.dense.bias from model.bert.encoder.layer.4.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.output.LayerNorm.weight from model.bert.encoder.layer.4.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.output.LayerNorm.bias from model.bert.encoder.layer.4.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.intermediate.dense.weight from model.bert.encoder.layer.4.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.intermediate.dense.bias from model.bert.encoder.layer.4.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.output.dense.weight from model.bert.encoder.layer.4.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.output.dense.bias from model.bert.encoder.layer.4.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.output.LayerNorm.weight from model.bert.encoder.layer.4.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.output.LayerNorm.bias from model.bert.encoder.layer.4.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.query.weight from model.bert.encoder.layer.5.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.query.bias from model.bert.encoder.layer.5.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.key.weight from model.bert.encoder.layer.5.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.key.bias from model.bert.encoder.layer.5.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.value.weight from model.bert.encoder.layer.5.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.value.bias from model.bert.encoder.layer.5.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.output.dense.weight from model.bert.encoder.layer.5.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.output.dense.bias from model.bert.encoder.layer.5.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.output.LayerNorm.weight from model.bert.encoder.layer.5.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.output.LayerNorm.bias from model.bert.encoder.layer.5.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.intermediate.dense.weight from model.bert.encoder.layer.5.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.intermediate.dense.bias from model.bert.encoder.layer.5.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.output.dense.weight from model.bert.encoder.layer.5.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.output.dense.bias from model.bert.encoder.layer.5.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.output.LayerNorm.weight from model.bert.encoder.layer.5.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.output.LayerNorm.bias from model.bert.encoder.layer.5.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.query.weight from model.bert.encoder.layer.6.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.query.bias from model.bert.encoder.layer.6.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.key.weight from model.bert.encoder.layer.6.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.key.bias from model.bert.encoder.layer.6.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.value.weight from model.bert.encoder.layer.6.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.value.bias from model.bert.encoder.layer.6.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.output.dense.weight from model.bert.encoder.layer.6.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.output.dense.bias from model.bert.encoder.layer.6.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.output.LayerNorm.weight from model.bert.encoder.layer.6.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.output.LayerNorm.bias from model.bert.encoder.layer.6.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.intermediate.dense.weight from model.bert.encoder.layer.6.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.intermediate.dense.bias from model.bert.encoder.layer.6.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.output.dense.weight from model.bert.encoder.layer.6.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.output.dense.bias from model.bert.encoder.layer.6.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.output.LayerNorm.weight from model.bert.encoder.layer.6.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.output.LayerNorm.bias from model.bert.encoder.layer.6.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.query.weight from model.bert.encoder.layer.7.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.query.bias from model.bert.encoder.layer.7.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.key.weight from model.bert.encoder.layer.7.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.key.bias from model.bert.encoder.layer.7.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.value.weight from model.bert.encoder.layer.7.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.value.bias from model.bert.encoder.layer.7.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.output.dense.weight from model.bert.encoder.layer.7.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.output.dense.bias from model.bert.encoder.layer.7.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.output.LayerNorm.weight from model.bert.encoder.layer.7.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.output.LayerNorm.bias from model.bert.encoder.layer.7.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.intermediate.dense.weight from model.bert.encoder.layer.7.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.intermediate.dense.bias from model.bert.encoder.layer.7.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.output.dense.weight from model.bert.encoder.layer.7.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.output.dense.bias from model.bert.encoder.layer.7.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.output.LayerNorm.weight from model.bert.encoder.layer.7.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.output.LayerNorm.bias from model.bert.encoder.layer.7.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.query.weight from model.bert.encoder.layer.8.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.query.bias from model.bert.encoder.layer.8.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.key.weight from model.bert.encoder.layer.8.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.key.bias from model.bert.encoder.layer.8.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.value.weight from model.bert.encoder.layer.8.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.value.bias from model.bert.encoder.layer.8.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.output.dense.weight from model.bert.encoder.layer.8.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.output.dense.bias from model.bert.encoder.layer.8.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.output.LayerNorm.weight from model.bert.encoder.layer.8.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.output.LayerNorm.bias from model.bert.encoder.layer.8.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.intermediate.dense.weight from model.bert.encoder.layer.8.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.intermediate.dense.bias from model.bert.encoder.layer.8.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.output.dense.weight from model.bert.encoder.layer.8.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.output.dense.bias from model.bert.encoder.layer.8.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.output.LayerNorm.weight from model.bert.encoder.layer.8.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.output.LayerNorm.bias from model.bert.encoder.layer.8.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.query.weight from model.bert.encoder.layer.9.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.query.bias from model.bert.encoder.layer.9.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.key.weight from model.bert.encoder.layer.9.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.key.bias from model.bert.encoder.layer.9.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.value.weight from model.bert.encoder.layer.9.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.value.bias from model.bert.encoder.layer.9.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.output.dense.weight from model.bert.encoder.layer.9.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.output.dense.bias from model.bert.encoder.layer.9.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.output.LayerNorm.weight from model.bert.encoder.layer.9.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.output.LayerNorm.bias from model.bert.encoder.layer.9.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.intermediate.dense.weight from model.bert.encoder.layer.9.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.intermediate.dense.bias from model.bert.encoder.layer.9.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.output.dense.weight from model.bert.encoder.layer.9.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.output.dense.bias from model.bert.encoder.layer.9.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.output.LayerNorm.weight from model.bert.encoder.layer.9.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.output.LayerNorm.bias from model.bert.encoder.layer.9.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.query.weight from model.bert.encoder.layer.10.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.query.bias from model.bert.encoder.layer.10.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.key.weight from model.bert.encoder.layer.10.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.key.bias from model.bert.encoder.layer.10.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.value.weight from model.bert.encoder.layer.10.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.value.bias from model.bert.encoder.layer.10.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.output.dense.weight from model.bert.encoder.layer.10.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.output.dense.bias from model.bert.encoder.layer.10.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.output.LayerNorm.weight from model.bert.encoder.layer.10.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.output.LayerNorm.bias from model.bert.encoder.layer.10.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.intermediate.dense.weight from model.bert.encoder.layer.10.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.intermediate.dense.bias from model.bert.encoder.layer.10.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.output.dense.weight from model.bert.encoder.layer.10.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.output.dense.bias from model.bert.encoder.layer.10.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.output.LayerNorm.weight from model.bert.encoder.layer.10.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.output.LayerNorm.bias from model.bert.encoder.layer.10.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.query.weight from model.bert.encoder.layer.11.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.query.bias from model.bert.encoder.layer.11.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.key.weight from model.bert.encoder.layer.11.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.key.bias from model.bert.encoder.layer.11.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.value.weight from model.bert.encoder.layer.11.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.value.bias from model.bert.encoder.layer.11.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.output.dense.weight from model.bert.encoder.layer.11.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.output.dense.bias from model.bert.encoder.layer.11.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.output.LayerNorm.weight from model.bert.encoder.layer.11.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.output.LayerNorm.bias from model.bert.encoder.layer.11.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.intermediate.dense.weight from model.bert.encoder.layer.11.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.intermediate.dense.bias from model.bert.encoder.layer.11.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.output.dense.weight from model.bert.encoder.layer.11.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.output.dense.bias from model.bert.encoder.layer.11.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.output.LayerNorm.weight from model.bert.encoder.layer.11.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.output.LayerNorm.bias from model.bert.encoder.layer.11.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.pooler.dense.weight from model.bert.pooler.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.pooler.dense.bias from model.bert.pooler.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.0.dense.weight from model.classifier.0.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.0.dense.bias from model.classifier.0.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.0.LayerNorm.weight from model.classifier.0.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.0.LayerNorm.bias from model.classifier.0.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.1.weight from model.classifier.1.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.1.bias from model.classifier.1.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Checkpoint loaded.
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Current num updates: 3000
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Current iteration: 3000
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Current epoch: 34
+2021-08-18T10:24:28 | INFO | mmf.trainers.mmf_trainer : Starting inference on val set
+2021-08-18T10:24:28 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T10:24:43 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T10:24:43 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:24:43 | INFO | mmf.trainers.callbacks.logistics : Finished run in 01h 38m 08s 551ms

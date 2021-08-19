@@ -1,0 +1,778 @@
+2021-08-18T08:46:25 | INFO | mmf : Logging to: ./save/train.log
+2021-08-18T08:46:25 | INFO | mmf_cli.run : Namespace(config_override=None, local_rank=None, opts=['config=projects/hateful_memes/configs/visual_bert/direct.yaml', 'model=visual_bert', 'dataset=hateful_memes', 'run_type=train_val', 'training.max_updates=10000', 'training.tensorboard=true', 'training.batch_size=96'])
+2021-08-18T08:46:25 | INFO | mmf_cli.run : Torch version: 1.9.0+cu102
+2021-08-18T08:46:25 | INFO | mmf.utils.general : CUDA Device 0 is: Tesla V100-DGXS-16GB
+2021-08-18T08:46:25 | INFO | mmf_cli.run : Using seed 25026340
+2021-08-18T08:46:25 | INFO | mmf.trainers.mmf_trainer : Loading datasets
+2021-08-18T08:46:27 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-18T08:46:27 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-18T08:46:27 | INFO | mmf.datasets.multi_datamodule : Multitasking disabled by default for single dataset training
+2021-08-18T08:46:27 | INFO | mmf.trainers.mmf_trainer : Loading model
+2021-08-18T08:46:31 | INFO | mmf.trainers.mmf_trainer : Loading optimizer
+2021-08-18T08:46:31 | INFO | mmf.trainers.mmf_trainer : Loading metrics
+2021-08-18T08:46:31 | INFO | mmf.trainers.core.device : Using PyTorch DistributedDataParallel
+2021-08-18T08:46:31 | WARNING | py.warnings : /home/phermida/mmf/mmf/utils/distributed.py:407: UserWarning: You can enable ZeRO and Sharded DDP, by installing fairscale and setting optimizer.enable_state_sharding=True.
+  builtin_warn(*args, **kwargs)
+
+2021-08-18T08:46:31 | WARNING | py.warnings : /home/phermida/mmf/mmf/utils/distributed.py:407: UserWarning: You can enable ZeRO and Sharded DDP, by installing fairscale and setting optimizer.enable_state_sharding=True.
+  builtin_warn(*args, **kwargs)
+
+2021-08-18T08:46:31 | INFO | mmf.trainers.mmf_trainer : ===== Model =====
+2021-08-18T08:46:31 | INFO | mmf.trainers.mmf_trainer : DistributedDataParallel(
+  (module): VisualBERT(
+    (model): VisualBERTForClassification(
+      (bert): VisualBERTBase(
+        (embeddings): BertVisioLinguisticEmbeddings(
+          (word_embeddings): Embedding(30522, 768, padding_idx=0)
+          (position_embeddings): Embedding(512, 768)
+          (token_type_embeddings): Embedding(2, 768)
+          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (token_type_embeddings_visual): Embedding(2, 768)
+          (position_embeddings_visual): Embedding(512, 768)
+          (projection): Linear(in_features=2048, out_features=768, bias=True)
+        )
+        (encoder): BertEncoderJit(
+          (layer): ModuleList(
+            (0): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (1): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (2): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (3): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (4): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (5): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (6): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (7): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (8): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (9): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (10): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+            (11): BertLayerJit(
+              (attention): BertAttentionJit(
+                (self): BertSelfAttentionJit(
+                  (query): Linear(in_features=768, out_features=768, bias=True)
+                  (key): Linear(in_features=768, out_features=768, bias=True)
+                  (value): Linear(in_features=768, out_features=768, bias=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+                (output): BertSelfOutput(
+                  (dense): Linear(in_features=768, out_features=768, bias=True)
+                  (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                  (dropout): Dropout(p=0.1, inplace=False)
+                )
+              )
+              (intermediate): BertIntermediate(
+                (dense): Linear(in_features=768, out_features=3072, bias=True)
+              )
+              (output): BertOutput(
+                (dense): Linear(in_features=3072, out_features=768, bias=True)
+                (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+                (dropout): Dropout(p=0.1, inplace=False)
+              )
+            )
+          )
+        )
+        (pooler): BertPooler(
+          (dense): Linear(in_features=768, out_features=768, bias=True)
+          (activation): Tanh()
+        )
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+      (classifier): Sequential(
+        (0): BertPredictionHeadTransform(
+          (dense): Linear(in_features=768, out_features=768, bias=True)
+          (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+        )
+        (1): Linear(in_features=768, out_features=2, bias=True)
+      )
+    )
+    (losses): Losses(
+      (losses): ModuleList(
+        (0): MMFLoss(
+          (loss_criterion): CrossEntropyLoss(
+            (loss_fn): CrossEntropyLoss()
+          )
+        )
+      )
+    )
+  )
+)
+2021-08-18T08:46:31 | INFO | mmf.utils.general : Total Parameters: 112044290. Trained Parameters: 112044290
+2021-08-18T08:46:31 | INFO | mmf.trainers.core.training_loop : Starting training...
+2021-08-18T08:47:40 | INFO | mmf.trainers.callbacks.logistics : progress: 100/10000, train/hateful_memes/cross_entropy: 0.6676, train/hateful_memes/cross_entropy/avg: 0.6676, train/total_loss: 0.6676, train/total_loss/avg: 0.6676, max mem: 9602.0, experiment: run, epoch: 2, num_updates: 100, iterations: 100, max_updates: 10000, lr: 0., ups: 1.45, time: 01m 09s 260ms, time_since_start: 01m 09s 291ms, eta: 01h 54m 57s 909ms
+2021-08-18T08:48:31 | INFO | mmf.trainers.callbacks.logistics : progress: 200/10000, train/hateful_memes/cross_entropy: 0.6676, train/hateful_memes/cross_entropy/avg: 0.6677, train/total_loss: 0.6676, train/total_loss/avg: 0.6677, max mem: 9602.0, experiment: run, epoch: 3, num_updates: 200, iterations: 200, max_updates: 10000, lr: 0.00001, ups: 1.96, time: 51s 000ms, time_since_start: 02m 291ms, eta: 01h 23m 48s 007ms
+2021-08-18T08:49:24 | INFO | mmf.trainers.callbacks.logistics : progress: 300/10000, train/hateful_memes/cross_entropy: 0.6676, train/hateful_memes/cross_entropy/avg: 0.6326, train/total_loss: 0.6676, train/total_loss/avg: 0.6326, max mem: 9602.0, experiment: run, epoch: 4, num_updates: 300, iterations: 300, max_updates: 10000, lr: 0.00001, ups: 1.92, time: 52s 603ms, time_since_start: 02m 52s 895ms, eta: 01h 25m 33s 197ms
+2021-08-18T08:50:18 | INFO | mmf.trainers.callbacks.logistics : progress: 400/10000, train/hateful_memes/cross_entropy: 0.5625, train/hateful_memes/cross_entropy/avg: 0.5932, train/total_loss: 0.5625, train/total_loss/avg: 0.5932, max mem: 9602.0, experiment: run, epoch: 5, num_updates: 400, iterations: 400, max_updates: 10000, lr: 0.00001, ups: 1.89, time: 53s 912ms, time_since_start: 03m 46s 808ms, eta: 01h 26m 46s 677ms
+2021-08-18T08:51:12 | INFO | mmf.trainers.callbacks.logistics : progress: 500/10000, train/hateful_memes/cross_entropy: 0.5625, train/hateful_memes/cross_entropy/avg: 0.5594, train/total_loss: 0.5625, train/total_loss/avg: 0.5594, max mem: 9602.0, experiment: run, epoch: 6, num_updates: 500, iterations: 500, max_updates: 10000, lr: 0.00001, ups: 1.85, time: 54s 505ms, time_since_start: 04m 41s 314ms, eta: 01h 26m 49s 111ms
+2021-08-18T08:52:07 | INFO | mmf.trainers.callbacks.logistics : progress: 600/10000, train/hateful_memes/cross_entropy: 0.4749, train/hateful_memes/cross_entropy/avg: 0.5107, train/total_loss: 0.4749, train/total_loss/avg: 0.5107, max mem: 9602.0, experiment: run, epoch: 7, num_updates: 600, iterations: 600, max_updates: 10000, lr: 0.00002, ups: 1.85, time: 54s 347ms, time_since_start: 05m 35s 661ms, eta: 01h 25m 39s 293ms
+2021-08-18T08:53:00 | INFO | mmf.trainers.callbacks.logistics : progress: 700/10000, train/hateful_memes/cross_entropy: 0.4749, train/hateful_memes/cross_entropy/avg: 0.4659, train/total_loss: 0.4749, train/total_loss/avg: 0.4659, max mem: 9602.0, experiment: run, epoch: 8, num_updates: 700, iterations: 700, max_updates: 10000, lr: 0.00002, ups: 1.89, time: 53s 611ms, time_since_start: 06m 29s 272ms, eta: 01h 23m 35s 784ms
+2021-08-18T08:53:54 | INFO | mmf.trainers.callbacks.logistics : progress: 800/10000, train/hateful_memes/cross_entropy: 0.4242, train/hateful_memes/cross_entropy/avg: 0.4218, train/total_loss: 0.4242, train/total_loss/avg: 0.4218, max mem: 9602.0, experiment: run, epoch: 9, num_updates: 800, iterations: 800, max_updates: 10000, lr: 0.00002, ups: 1.89, time: 53s 647ms, time_since_start: 07m 22s 919ms, eta: 01h 22m 45s 147ms
+2021-08-18T08:54:49 | INFO | mmf.trainers.callbacks.logistics : progress: 900/10000, train/hateful_memes/cross_entropy: 0.4242, train/hateful_memes/cross_entropy/avg: 0.3908, train/total_loss: 0.4242, train/total_loss/avg: 0.3908, max mem: 9602.0, experiment: run, epoch: 11, num_updates: 900, iterations: 900, max_updates: 10000, lr: 0.00002, ups: 1.85, time: 54s 680ms, time_since_start: 08m 17s 600ms, eta: 01h 23m 25s 819ms
+2021-08-18T08:55:44 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T08:55:44 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T08:55:46 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T08:55:47 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T08:55:47 | INFO | mmf.trainers.callbacks.logistics : progress: 1000/10000, train/hateful_memes/cross_entropy: 0.2672, train/hateful_memes/cross_entropy/avg: 0.3565, train/total_loss: 0.2672, train/total_loss/avg: 0.3565, max mem: 9602.0, experiment: run, epoch: 12, num_updates: 1000, iterations: 1000, max_updates: 10000, lr: 0.00003, ups: 1.72, time: 58s 825ms, time_since_start: 09m 16s 426ms, eta: 01h 28m 46s 081ms
+2021-08-18T08:55:47 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T08:55:47 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T08:56:01 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T08:56:01 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T08:56:02 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T08:56:06 | INFO | mmf.utils.checkpoint : Saving best checkpoint
+2021-08-18T08:56:07 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T08:56:11 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T08:56:12 | INFO | mmf.trainers.callbacks.logistics : progress: 1000/10000, val/hateful_memes/cross_entropy: 1.5907, val/total_loss: 1.5907, val/hateful_memes/accuracy: 0.6704, val/hateful_memes/binary_f1: 0.3709, val/hateful_memes/roc_auc: 0.6380, num_updates: 1000, epoch: 12, iterations: 1000, max_updates: 10000, val_time: 24s 170ms, best_update: 1000, best_iteration: 1000, best_val/hateful_memes/roc_auc: 0.637950
+2021-08-18T08:57:06 | INFO | mmf.trainers.callbacks.logistics : progress: 1100/10000, train/hateful_memes/cross_entropy: 0.2672, train/hateful_memes/cross_entropy/avg: 0.3331, train/total_loss: 0.2672, train/total_loss/avg: 0.3331, max mem: 9628.0, experiment: run, epoch: 13, num_updates: 1100, iterations: 1100, max_updates: 10000, lr: 0.00003, ups: 1.85, time: 54s 102ms, time_since_start: 10m 34s 700ms, eta: 01h 20m 43s 973ms
+2021-08-18T08:58:00 | INFO | mmf.trainers.callbacks.logistics : progress: 1200/10000, train/hateful_memes/cross_entropy: 0.1971, train/hateful_memes/cross_entropy/avg: 0.3070, train/total_loss: 0.1971, train/total_loss/avg: 0.3070, max mem: 9628.0, experiment: run, epoch: 14, num_updates: 1200, iterations: 1200, max_updates: 10000, lr: 0.00003, ups: 1.85, time: 54s 152ms, time_since_start: 11m 28s 853ms, eta: 01h 19m 54s 007ms
+2021-08-18T08:58:54 | INFO | mmf.trainers.callbacks.logistics : progress: 1300/10000, train/hateful_memes/cross_entropy: 0.1971, train/hateful_memes/cross_entropy/avg: 0.2882, train/total_loss: 0.1971, train/total_loss/avg: 0.2882, max mem: 9628.0, experiment: run, epoch: 15, num_updates: 1300, iterations: 1300, max_updates: 10000, lr: 0.00003, ups: 1.85, time: 54s 400ms, time_since_start: 12m 23s 253ms, eta: 01h 19m 21s 207ms
+2021-08-18T08:59:50 | INFO | mmf.trainers.callbacks.logistics : progress: 1400/10000, train/hateful_memes/cross_entropy: 0.1430, train/hateful_memes/cross_entropy/avg: 0.2745, train/total_loss: 0.1430, train/total_loss/avg: 0.2745, max mem: 9628.0, experiment: run, epoch: 16, num_updates: 1400, iterations: 1400, max_updates: 10000, lr: 0.00003, ups: 1.82, time: 55s 488ms, time_since_start: 13m 18s 742ms, eta: 01h 20m 667ms
+2021-08-18T09:00:44 | INFO | mmf.trainers.callbacks.logistics : progress: 1500/10000, train/hateful_memes/cross_entropy: 0.1430, train/hateful_memes/cross_entropy/avg: 0.2576, train/total_loss: 0.1430, train/total_loss/avg: 0.2576, max mem: 9628.0, experiment: run, epoch: 17, num_updates: 1500, iterations: 1500, max_updates: 10000, lr: 0.00004, ups: 1.85, time: 54s 007ms, time_since_start: 14m 12s 749ms, eta: 01h 16m 58s 175ms
+2021-08-18T09:01:38 | INFO | mmf.trainers.callbacks.logistics : progress: 1600/10000, train/hateful_memes/cross_entropy: 0.1131, train/hateful_memes/cross_entropy/avg: 0.2439, train/total_loss: 0.1131, train/total_loss/avg: 0.2439, max mem: 9628.0, experiment: run, epoch: 18, num_updates: 1600, iterations: 1600, max_updates: 10000, lr: 0.00004, ups: 1.85, time: 54s 537ms, time_since_start: 15m 07s 287ms, eta: 01h 16m 48s 670ms
+2021-08-18T09:02:33 | INFO | mmf.trainers.callbacks.logistics : progress: 1700/10000, train/hateful_memes/cross_entropy: 0.1131, train/hateful_memes/cross_entropy/avg: 0.2316, train/total_loss: 0.1131, train/total_loss/avg: 0.2316, max mem: 9628.0, experiment: run, epoch: 20, num_updates: 1700, iterations: 1700, max_updates: 10000, lr: 0.00004, ups: 1.82, time: 55s 082ms, time_since_start: 16m 02s 370ms, eta: 01h 16m 39s 316ms
+2021-08-18T09:03:28 | INFO | mmf.trainers.callbacks.logistics : progress: 1800/10000, train/hateful_memes/cross_entropy: 0.0999, train/hateful_memes/cross_entropy/avg: 0.2193, train/total_loss: 0.0999, train/total_loss/avg: 0.2193, max mem: 9628.0, experiment: run, epoch: 21, num_updates: 1800, iterations: 1800, max_updates: 10000, lr: 0.00005, ups: 1.82, time: 55s 087ms, time_since_start: 16m 57s 458ms, eta: 01h 15m 44s 298ms
+2021-08-18T09:04:24 | INFO | mmf.trainers.callbacks.logistics : progress: 1900/10000, train/hateful_memes/cross_entropy: 0.0999, train/hateful_memes/cross_entropy/avg: 0.2101, train/total_loss: 0.0999, train/total_loss/avg: 0.2101, max mem: 9628.0, experiment: run, epoch: 22, num_updates: 1900, iterations: 1900, max_updates: 10000, lr: 0.00005, ups: 1.79, time: 56s 035ms, time_since_start: 17m 53s 493ms, eta: 01h 16m 06s 122ms
+2021-08-18T09:05:21 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:05:21 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:05:23 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:05:27 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:05:27 | INFO | mmf.trainers.callbacks.logistics : progress: 2000/10000, train/hateful_memes/cross_entropy: 0.0965, train/hateful_memes/cross_entropy/avg: 0.1999, train/total_loss: 0.0965, train/total_loss/avg: 0.1999, max mem: 9628.0, experiment: run, epoch: 23, num_updates: 2000, iterations: 2000, max_updates: 10000, lr: 0.00005, ups: 1.61, time: 01m 02s 636ms, time_since_start: 18m 56s 130ms, eta: 01h 24m 982ms
+2021-08-18T09:05:27 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:05:27 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:05:41 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:05:41 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:05:41 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:05:45 | INFO | mmf.utils.checkpoint : Saving best checkpoint
+2021-08-18T09:05:50 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:05:54 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:05:54 | INFO | mmf.trainers.callbacks.logistics : progress: 2000/10000, val/hateful_memes/cross_entropy: 1.9035, val/total_loss: 1.9035, val/hateful_memes/accuracy: 0.6870, val/hateful_memes/binary_f1: 0.4006, val/hateful_memes/roc_auc: 0.6990, num_updates: 2000, epoch: 23, iterations: 2000, max_updates: 10000, val_time: 26s 543ms, best_update: 2000, best_iteration: 2000, best_val/hateful_memes/roc_auc: 0.699023
+2021-08-18T09:07:08 | INFO | mmf.trainers.callbacks.logistics : progress: 2100/10000, train/hateful_memes/cross_entropy: 0.0615, train/hateful_memes/cross_entropy/avg: 0.1911, train/total_loss: 0.0615, train/total_loss/avg: 0.1911, max mem: 9628.0, experiment: run, epoch: 24, num_updates: 2100, iterations: 2100, max_updates: 10000, lr: 0.00005, ups: 1.35, time: 01m 14s 153ms, time_since_start: 20m 36s 829ms, eta: 01h 38m 13s 285ms
+2021-08-18T09:08:02 | INFO | mmf.trainers.callbacks.logistics : progress: 2200/10000, train/hateful_memes/cross_entropy: 0.0548, train/hateful_memes/cross_entropy/avg: 0.1849, train/total_loss: 0.0548, train/total_loss/avg: 0.1849, max mem: 9628.0, experiment: run, epoch: 25, num_updates: 2200, iterations: 2200, max_updates: 10000, lr: 0.00005, ups: 1.85, time: 54s 737ms, time_since_start: 21m 31s 567ms, eta: 01h 11m 35s 182ms
+2021-08-18T09:08:59 | INFO | mmf.trainers.callbacks.logistics : progress: 2300/10000, train/hateful_memes/cross_entropy: 0.0548, train/hateful_memes/cross_entropy/avg: 0.1825, train/total_loss: 0.0548, train/total_loss/avg: 0.1825, max mem: 9628.0, experiment: run, epoch: 26, num_updates: 2300, iterations: 2300, max_updates: 10000, lr: 0.00005, ups: 1.79, time: 56s 326ms, time_since_start: 22m 27s 893ms, eta: 01h 12m 43s 132ms
+2021-08-18T09:09:54 | INFO | mmf.trainers.callbacks.logistics : progress: 2400/10000, train/hateful_memes/cross_entropy: 0.0548, train/hateful_memes/cross_entropy/avg: 0.1777, train/total_loss: 0.0548, train/total_loss/avg: 0.1777, max mem: 9628.0, experiment: run, epoch: 27, num_updates: 2400, iterations: 2400, max_updates: 10000, lr: 0.00005, ups: 1.82, time: 55s 555ms, time_since_start: 23m 23s 449ms, eta: 01h 10m 47s 565ms
+2021-08-18T09:10:50 | INFO | mmf.trainers.callbacks.logistics : progress: 2500/10000, train/hateful_memes/cross_entropy: 0.0548, train/hateful_memes/cross_entropy/avg: 0.1736, train/total_loss: 0.0548, train/total_loss/avg: 0.1736, max mem: 9628.0, experiment: run, epoch: 29, num_updates: 2500, iterations: 2500, max_updates: 10000, lr: 0.00005, ups: 1.79, time: 56s 145ms, time_since_start: 24m 19s 594ms, eta: 01h 10m 36s 154ms
+2021-08-18T09:11:46 | INFO | mmf.trainers.callbacks.logistics : progress: 2600/10000, train/hateful_memes/cross_entropy: 0.0471, train/hateful_memes/cross_entropy/avg: 0.1671, train/total_loss: 0.0471, train/total_loss/avg: 0.1671, max mem: 9628.0, experiment: run, epoch: 30, num_updates: 2600, iterations: 2600, max_updates: 10000, lr: 0.00005, ups: 1.82, time: 55s 538ms, time_since_start: 25m 15s 133ms, eta: 01h 08m 54s 531ms
+2021-08-18T09:12:41 | INFO | mmf.trainers.callbacks.logistics : progress: 2700/10000, train/hateful_memes/cross_entropy: 0.0451, train/hateful_memes/cross_entropy/avg: 0.1610, train/total_loss: 0.0451, train/total_loss/avg: 0.1610, max mem: 9628.0, experiment: run, epoch: 31, num_updates: 2700, iterations: 2700, max_updates: 10000, lr: 0.00005, ups: 1.82, time: 55s 240ms, time_since_start: 26m 10s 373ms, eta: 01h 07m 36s 739ms
+2021-08-18T09:13:37 | INFO | mmf.trainers.callbacks.logistics : progress: 2800/10000, train/hateful_memes/cross_entropy: 0.0379, train/hateful_memes/cross_entropy/avg: 0.1553, train/total_loss: 0.0379, train/total_loss/avg: 0.1553, max mem: 9628.0, experiment: run, epoch: 32, num_updates: 2800, iterations: 2800, max_updates: 10000, lr: 0.00005, ups: 1.82, time: 55s 551ms, time_since_start: 27m 05s 925ms, eta: 01h 07m 03s 698ms
+2021-08-18T09:14:34 | INFO | mmf.trainers.callbacks.logistics : progress: 2900/10000, train/hateful_memes/cross_entropy: 0.0357, train/hateful_memes/cross_entropy/avg: 0.1512, train/total_loss: 0.0357, train/total_loss/avg: 0.1512, max mem: 9628.0, experiment: run, epoch: 33, num_updates: 2900, iterations: 2900, max_updates: 10000, lr: 0.00004, ups: 1.75, time: 57s 136ms, time_since_start: 28m 03s 061ms, eta: 01h 08m 01s 015ms
+2021-08-18T09:15:30 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:15:30 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:15:32 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:15:36 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:15:36 | INFO | mmf.trainers.callbacks.logistics : progress: 3000/10000, train/hateful_memes/cross_entropy: 0.0353, train/hateful_memes/cross_entropy/avg: 0.1461, train/total_loss: 0.0353, train/total_loss/avg: 0.1461, max mem: 9628.0, experiment: run, epoch: 34, num_updates: 3000, iterations: 3000, max_updates: 10000, lr: 0.00004, ups: 1.64, time: 01m 01s 808ms, time_since_start: 29m 04s 869ms, eta: 01h 12m 32s 555ms
+2021-08-18T09:15:36 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:15:36 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:15:49 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:15:49 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:15:50 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:15:54 | INFO | mmf.utils.checkpoint : Saving best checkpoint
+2021-08-18T09:15:58 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:16:02 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:16:02 | INFO | mmf.trainers.callbacks.logistics : progress: 3000/10000, val/hateful_memes/cross_entropy: 2.0739, val/total_loss: 2.0739, val/hateful_memes/accuracy: 0.7056, val/hateful_memes/binary_f1: 0.4900, val/hateful_memes/roc_auc: 0.7303, num_updates: 3000, epoch: 34, iterations: 3000, max_updates: 10000, val_time: 26s 465ms, best_update: 3000, best_iteration: 3000, best_val/hateful_memes/roc_auc: 0.730307
+2021-08-18T09:16:55 | INFO | mmf.trainers.callbacks.logistics : progress: 3100/10000, train/hateful_memes/cross_entropy: 0.0217, train/hateful_memes/cross_entropy/avg: 0.1416, train/total_loss: 0.0217, train/total_loss/avg: 0.1416, max mem: 9628.0, experiment: run, epoch: 35, num_updates: 3100, iterations: 3100, max_updates: 10000, lr: 0.00004, ups: 1.89, time: 53s 134ms, time_since_start: 30m 24s 472ms, eta: 01h 01m 28s 310ms
+2021-08-18T09:17:51 | INFO | mmf.trainers.callbacks.logistics : progress: 3200/10000, train/hateful_memes/cross_entropy: 0.0217, train/hateful_memes/cross_entropy/avg: 0.1373, train/total_loss: 0.0217, train/total_loss/avg: 0.1373, max mem: 9628.0, experiment: run, epoch: 36, num_updates: 3200, iterations: 3200, max_updates: 10000, lr: 0.00004, ups: 1.82, time: 55s 361ms, time_since_start: 31m 19s 833ms, eta: 01h 03m 07s 171ms
+2021-08-18T09:18:47 | INFO | mmf.trainers.callbacks.logistics : progress: 3300/10000, train/hateful_memes/cross_entropy: 0.0144, train/hateful_memes/cross_entropy/avg: 0.1332, train/total_loss: 0.0144, train/total_loss/avg: 0.1332, max mem: 9628.0, experiment: run, epoch: 38, num_updates: 3300, iterations: 3300, max_updates: 10000, lr: 0.00004, ups: 1.79, time: 56s 163ms, time_since_start: 32m 15s 997ms, eta: 01h 03m 05s 561ms
+2021-08-18T09:19:44 | INFO | mmf.trainers.callbacks.logistics : progress: 3400/10000, train/hateful_memes/cross_entropy: 0.0144, train/hateful_memes/cross_entropy/avg: 0.1299, train/total_loss: 0.0144, train/total_loss/avg: 0.1299, max mem: 9628.0, experiment: run, epoch: 39, num_updates: 3400, iterations: 3400, max_updates: 10000, lr: 0.00004, ups: 1.75, time: 57s 154ms, time_since_start: 33m 13s 152ms, eta: 01h 03m 14s 862ms
+2021-08-18T09:20:41 | INFO | mmf.trainers.callbacks.logistics : progress: 3500/10000, train/hateful_memes/cross_entropy: 0.0097, train/hateful_memes/cross_entropy/avg: 0.1262, train/total_loss: 0.0097, train/total_loss/avg: 0.1262, max mem: 9628.0, experiment: run, epoch: 40, num_updates: 3500, iterations: 3500, max_updates: 10000, lr: 0.00004, ups: 1.79, time: 56s 439ms, time_since_start: 34m 09s 592ms, eta: 01h 01m 30s 587ms
+2021-08-18T09:21:38 | INFO | mmf.trainers.callbacks.logistics : progress: 3600/10000, train/hateful_memes/cross_entropy: 0.0088, train/hateful_memes/cross_entropy/avg: 0.1230, train/total_loss: 0.0088, train/total_loss/avg: 0.1230, max mem: 9628.0, experiment: run, epoch: 41, num_updates: 3600, iterations: 3600, max_updates: 10000, lr: 0.00004, ups: 1.75, time: 57s 690ms, time_since_start: 35m 07s 282ms, eta: 01h 01m 54s 317ms
+2021-08-18T09:22:36 | INFO | mmf.trainers.callbacks.logistics : progress: 3700/10000, train/hateful_memes/cross_entropy: 0.0088, train/hateful_memes/cross_entropy/avg: 0.1203, train/total_loss: 0.0088, train/total_loss/avg: 0.1203, max mem: 9628.0, experiment: run, epoch: 42, num_updates: 3700, iterations: 3700, max_updates: 10000, lr: 0.00004, ups: 1.75, time: 57s 427ms, time_since_start: 36m 04s 710ms, eta: 01h 39s 662ms
+2021-08-18T09:23:32 | INFO | mmf.trainers.callbacks.logistics : progress: 3800/10000, train/hateful_memes/cross_entropy: 0.0067, train/hateful_memes/cross_entropy/avg: 0.1172, train/total_loss: 0.0067, train/total_loss/avg: 0.1172, max mem: 9628.0, experiment: run, epoch: 43, num_updates: 3800, iterations: 3800, max_updates: 10000, lr: 0.00004, ups: 1.79, time: 56s 702ms, time_since_start: 37m 01s 412ms, eta: 58m 56s 631ms
+2021-08-18T09:24:29 | INFO | mmf.trainers.callbacks.logistics : progress: 3900/10000, train/hateful_memes/cross_entropy: 0.0067, train/hateful_memes/cross_entropy/avg: 0.1146, train/total_loss: 0.0067, train/total_loss/avg: 0.1146, max mem: 9628.0, experiment: run, epoch: 44, num_updates: 3900, iterations: 3900, max_updates: 10000, lr: 0.00004, ups: 1.79, time: 56s 705ms, time_since_start: 37m 58s 117ms, eta: 57m 59s 761ms
+2021-08-18T09:25:26 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:25:26 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:25:28 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:25:32 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:25:32 | INFO | mmf.trainers.callbacks.logistics : progress: 4000/10000, train/hateful_memes/cross_entropy: 0.0067, train/hateful_memes/cross_entropy/avg: 0.1117, train/total_loss: 0.0067, train/total_loss/avg: 0.1117, max mem: 9628.0, experiment: run, epoch: 45, num_updates: 4000, iterations: 4000, max_updates: 10000, lr: 0.00004, ups: 1.61, time: 01m 02s 928ms, time_since_start: 39m 01s 046ms, eta: 01h 03m 18s 366ms
+2021-08-18T09:25:32 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:25:32 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:25:46 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:25:46 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:25:46 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:25:50 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:25:55 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:25:55 | INFO | mmf.trainers.callbacks.logistics : progress: 4000/10000, val/hateful_memes/cross_entropy: 1.9815, val/total_loss: 1.9815, val/hateful_memes/accuracy: 0.6981, val/hateful_memes/binary_f1: 0.4970, val/hateful_memes/roc_auc: 0.7191, num_updates: 4000, epoch: 45, iterations: 4000, max_updates: 10000, val_time: 22s 565ms, best_update: 3000, best_iteration: 3000, best_val/hateful_memes/roc_auc: 0.730307
+2021-08-18T09:26:48 | INFO | mmf.trainers.callbacks.logistics : progress: 4100/10000, train/hateful_memes/cross_entropy: 0.0067, train/hateful_memes/cross_entropy/avg: 0.1094, train/total_loss: 0.0067, train/total_loss/avg: 0.1094, max mem: 9628.0, experiment: run, epoch: 47, num_updates: 4100, iterations: 4100, max_updates: 10000, lr: 0.00004, ups: 1.89, time: 53s 806ms, time_since_start: 40m 17s 420ms, eta: 53m 13s 622ms
+2021-08-18T09:27:45 | INFO | mmf.trainers.callbacks.logistics : progress: 4200/10000, train/hateful_memes/cross_entropy: 0.0062, train/hateful_memes/cross_entropy/avg: 0.1069, train/total_loss: 0.0062, train/total_loss/avg: 0.1069, max mem: 9628.0, experiment: run, epoch: 48, num_updates: 4200, iterations: 4200, max_updates: 10000, lr: 0.00004, ups: 1.79, time: 56s 982ms, time_since_start: 41m 14s 403ms, eta: 55m 24s 840ms
+2021-08-18T09:28:42 | INFO | mmf.trainers.callbacks.logistics : progress: 4300/10000, train/hateful_memes/cross_entropy: 0.0036, train/hateful_memes/cross_entropy/avg: 0.1044, train/total_loss: 0.0036, train/total_loss/avg: 0.1044, max mem: 9628.0, experiment: run, epoch: 49, num_updates: 4300, iterations: 4300, max_updates: 10000, lr: 0.00004, ups: 1.79, time: 56s 806ms, time_since_start: 42m 11s 209ms, eta: 54m 17s 395ms
+2021-08-18T09:29:40 | INFO | mmf.trainers.callbacks.logistics : progress: 4400/10000, train/hateful_memes/cross_entropy: 0.0033, train/hateful_memes/cross_entropy/avg: 0.1021, train/total_loss: 0.0033, train/total_loss/avg: 0.1021, max mem: 9628.0, experiment: run, epoch: 50, num_updates: 4400, iterations: 4400, max_updates: 10000, lr: 0.00003, ups: 1.75, time: 57s 843ms, time_since_start: 43m 09s 052ms, eta: 54m 18s 645ms
+2021-08-18T09:30:39 | INFO | mmf.trainers.callbacks.logistics : progress: 4500/10000, train/hateful_memes/cross_entropy: 0.0033, train/hateful_memes/cross_entropy/avg: 0.1011, train/total_loss: 0.0033, train/total_loss/avg: 0.1011, max mem: 9628.0, experiment: run, epoch: 51, num_updates: 4500, iterations: 4500, max_updates: 10000, lr: 0.00003, ups: 1.72, time: 58s 977ms, time_since_start: 44m 08s 030ms, eta: 54m 23s 223ms
+2021-08-18T09:31:37 | INFO | mmf.trainers.callbacks.logistics : progress: 4600/10000, train/hateful_memes/cross_entropy: 0.0033, train/hateful_memes/cross_entropy/avg: 0.0995, train/total_loss: 0.0033, train/total_loss/avg: 0.0995, max mem: 9628.0, experiment: run, epoch: 52, num_updates: 4600, iterations: 4600, max_updates: 10000, lr: 0.00003, ups: 1.72, time: 58s 507ms, time_since_start: 45m 06s 537ms, eta: 52m 58s 368ms
+2021-08-18T09:32:34 | INFO | mmf.trainers.callbacks.logistics : progress: 4700/10000, train/hateful_memes/cross_entropy: 0.0036, train/hateful_memes/cross_entropy/avg: 0.0975, train/total_loss: 0.0036, train/total_loss/avg: 0.0975, max mem: 9628.0, experiment: run, epoch: 53, num_updates: 4700, iterations: 4700, max_updates: 10000, lr: 0.00003, ups: 1.79, time: 56s 384ms, time_since_start: 46m 02s 922ms, eta: 50m 06s 299ms
+2021-08-18T09:33:31 | INFO | mmf.trainers.callbacks.logistics : progress: 4800/10000, train/hateful_memes/cross_entropy: 0.0036, train/hateful_memes/cross_entropy/avg: 0.0955, train/total_loss: 0.0036, train/total_loss/avg: 0.0955, max mem: 9628.0, experiment: run, epoch: 54, num_updates: 4800, iterations: 4800, max_updates: 10000, lr: 0.00003, ups: 1.75, time: 57s 213ms, time_since_start: 47m 135ms, eta: 49m 52s 940ms
+2021-08-18T09:34:29 | INFO | mmf.trainers.callbacks.logistics : progress: 4900/10000, train/hateful_memes/cross_entropy: 0.0036, train/hateful_memes/cross_entropy/avg: 0.0940, train/total_loss: 0.0036, train/total_loss/avg: 0.0940, max mem: 9628.0, experiment: run, epoch: 56, num_updates: 4900, iterations: 4900, max_updates: 10000, lr: 0.00003, ups: 1.72, time: 58s 063ms, time_since_start: 47m 58s 199ms, eta: 49m 39s 001ms
+2021-08-18T09:35:27 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:35:27 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:35:29 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:35:33 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:35:33 | INFO | mmf.trainers.callbacks.logistics : progress: 5000/10000, train/hateful_memes/cross_entropy: 0.0036, train/hateful_memes/cross_entropy/avg: 0.0921, train/total_loss: 0.0036, train/total_loss/avg: 0.0921, max mem: 9628.0, experiment: run, epoch: 57, num_updates: 5000, iterations: 5000, max_updates: 10000, lr: 0.00003, ups: 1.56, time: 01m 04s 049ms, time_since_start: 49m 02s 248ms, eta: 53m 41s 699ms
+2021-08-18T09:35:33 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:35:33 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:35:47 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:35:47 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:35:48 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:35:52 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:35:56 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:35:56 | INFO | mmf.trainers.callbacks.logistics : progress: 5000/10000, val/hateful_memes/cross_entropy: 2.1589, val/total_loss: 2.1589, val/hateful_memes/accuracy: 0.6833, val/hateful_memes/binary_f1: 0.4486, val/hateful_memes/roc_auc: 0.6837, num_updates: 5000, epoch: 57, iterations: 5000, max_updates: 10000, val_time: 22s 537ms, best_update: 3000, best_iteration: 3000, best_val/hateful_memes/roc_auc: 0.730307
+2021-08-18T09:36:51 | INFO | mmf.trainers.callbacks.logistics : progress: 5100/10000, train/hateful_memes/cross_entropy: 0.0033, train/hateful_memes/cross_entropy/avg: 0.0903, train/total_loss: 0.0033, train/total_loss/avg: 0.0903, max mem: 9628.0, experiment: run, epoch: 58, num_updates: 5100, iterations: 5100, max_updates: 10000, lr: 0.00003, ups: 1.82, time: 55s 167ms, time_since_start: 50m 19s 955ms, eta: 45m 19s 403ms
+2021-08-18T09:37:47 | INFO | mmf.trainers.callbacks.logistics : progress: 5200/10000, train/hateful_memes/cross_entropy: 0.0033, train/hateful_memes/cross_entropy/avg: 0.0886, train/total_loss: 0.0033, train/total_loss/avg: 0.0886, max mem: 9628.0, experiment: run, epoch: 59, num_updates: 5200, iterations: 5200, max_updates: 10000, lr: 0.00003, ups: 1.82, time: 55s 966ms, time_since_start: 51m 15s 921ms, eta: 45m 02s 513ms
+2021-08-18T09:38:42 | INFO | mmf.trainers.callbacks.logistics : progress: 5300/10000, train/hateful_memes/cross_entropy: 0.0027, train/hateful_memes/cross_entropy/avg: 0.0870, train/total_loss: 0.0027, train/total_loss/avg: 0.0870, max mem: 9628.0, experiment: run, epoch: 60, num_updates: 5300, iterations: 5300, max_updates: 10000, lr: 0.00003, ups: 1.82, time: 55s 479ms, time_since_start: 52m 11s 401ms, eta: 43m 43s 192ms
+2021-08-18T09:39:40 | INFO | mmf.trainers.callbacks.logistics : progress: 5400/10000, train/hateful_memes/cross_entropy: 0.0027, train/hateful_memes/cross_entropy/avg: 0.0854, train/total_loss: 0.0027, train/total_loss/avg: 0.0854, max mem: 9628.0, experiment: run, epoch: 61, num_updates: 5400, iterations: 5400, max_updates: 10000, lr: 0.00003, ups: 1.75, time: 57s 657ms, time_since_start: 53m 09s 058ms, eta: 44m 28s 141ms
+2021-08-18T09:40:37 | INFO | mmf.trainers.callbacks.logistics : progress: 5500/10000, train/hateful_memes/cross_entropy: 0.0027, train/hateful_memes/cross_entropy/avg: 0.0839, train/total_loss: 0.0027, train/total_loss/avg: 0.0839, max mem: 9628.0, experiment: run, epoch: 62, num_updates: 5500, iterations: 5500, max_updates: 10000, lr: 0.00003, ups: 1.75, time: 57s 341ms, time_since_start: 54m 06s 399ms, eta: 43m 15s 831ms
+2021-08-18T09:41:33 | INFO | mmf.trainers.callbacks.logistics : progress: 5600/10000, train/hateful_memes/cross_entropy: 0.0026, train/hateful_memes/cross_entropy/avg: 0.0824, train/total_loss: 0.0026, train/total_loss/avg: 0.0824, max mem: 9628.0, experiment: run, epoch: 63, num_updates: 5600, iterations: 5600, max_updates: 10000, lr: 0.00003, ups: 1.82, time: 55s 854ms, time_since_start: 55m 02s 253ms, eta: 41m 12s 326ms
+2021-08-18T09:42:30 | INFO | mmf.trainers.callbacks.logistics : progress: 5700/10000, train/hateful_memes/cross_entropy: 0.0019, train/hateful_memes/cross_entropy/avg: 0.0809, train/total_loss: 0.0019, train/total_loss/avg: 0.0809, max mem: 9628.0, experiment: run, epoch: 65, num_updates: 5700, iterations: 5700, max_updates: 10000, lr: 0.00003, ups: 1.79, time: 56s 505ms, time_since_start: 55m 58s 759ms, eta: 40m 44s 318ms
+2021-08-18T09:43:26 | INFO | mmf.trainers.callbacks.logistics : progress: 5800/10000, train/hateful_memes/cross_entropy: 0.0018, train/hateful_memes/cross_entropy/avg: 0.0796, train/total_loss: 0.0018, train/total_loss/avg: 0.0796, max mem: 9628.0, experiment: run, epoch: 66, num_updates: 5800, iterations: 5800, max_updates: 10000, lr: 0.00003, ups: 1.82, time: 55s 892ms, time_since_start: 56m 54s 651ms, eta: 39m 21s 565ms
+2021-08-18T09:44:21 | INFO | mmf.trainers.callbacks.logistics : progress: 5900/10000, train/hateful_memes/cross_entropy: 0.0018, train/hateful_memes/cross_entropy/avg: 0.0796, train/total_loss: 0.0018, train/total_loss/avg: 0.0796, max mem: 9628.0, experiment: run, epoch: 67, num_updates: 5900, iterations: 5900, max_updates: 10000, lr: 0.00003, ups: 1.82, time: 55s 676ms, time_since_start: 57m 50s 327ms, eta: 38m 16s 417ms
+2021-08-18T09:45:16 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:45:16 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:45:18 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:45:22 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:45:22 | INFO | mmf.trainers.callbacks.logistics : progress: 6000/10000, train/hateful_memes/cross_entropy: 0.0018, train/hateful_memes/cross_entropy/avg: 0.0783, train/total_loss: 0.0018, train/total_loss/avg: 0.0783, max mem: 9628.0, experiment: run, epoch: 68, num_updates: 6000, iterations: 6000, max_updates: 10000, lr: 0.00003, ups: 1.67, time: 01m 725ms, time_since_start: 58m 51s 053ms, eta: 40m 43s 581ms
+2021-08-18T09:45:22 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:45:22 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:45:36 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:45:36 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:45:36 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:45:40 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:45:44 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:45:44 | INFO | mmf.trainers.callbacks.logistics : progress: 6000/10000, val/hateful_memes/cross_entropy: 2.1979, val/total_loss: 2.1979, val/hateful_memes/accuracy: 0.6852, val/hateful_memes/binary_f1: 0.4411, val/hateful_memes/roc_auc: 0.6929, num_updates: 6000, epoch: 68, iterations: 6000, max_updates: 10000, val_time: 22s 416ms, best_update: 3000, best_iteration: 3000, best_val/hateful_memes/roc_auc: 0.730307
+2021-08-18T09:46:38 | INFO | mmf.trainers.callbacks.logistics : progress: 6100/10000, train/hateful_memes/cross_entropy: 0.0016, train/hateful_memes/cross_entropy/avg: 0.0770, train/total_loss: 0.0016, train/total_loss/avg: 0.0770, max mem: 9628.0, experiment: run, epoch: 69, num_updates: 6100, iterations: 6100, max_updates: 10000, lr: 0.00002, ups: 1.89, time: 53s 378ms, time_since_start: 01h 06s 850ms, eta: 34m 54s 258ms
+2021-08-18T09:47:33 | INFO | mmf.trainers.callbacks.logistics : progress: 6200/10000, train/hateful_memes/cross_entropy: 0.0016, train/hateful_memes/cross_entropy/avg: 0.0758, train/total_loss: 0.0016, train/total_loss/avg: 0.0758, max mem: 9628.0, experiment: run, epoch: 70, num_updates: 6200, iterations: 6200, max_updates: 10000, lr: 0.00002, ups: 1.82, time: 55s 307ms, time_since_start: 01h 01m 02s 157ms, eta: 35m 14s 286ms
+2021-08-18T09:48:29 | INFO | mmf.trainers.callbacks.logistics : progress: 6300/10000, train/hateful_memes/cross_entropy: 0.0013, train/hateful_memes/cross_entropy/avg: 0.0746, train/total_loss: 0.0013, train/total_loss/avg: 0.0746, max mem: 9628.0, experiment: run, epoch: 71, num_updates: 6300, iterations: 6300, max_updates: 10000, lr: 0.00002, ups: 1.79, time: 56s 199ms, time_since_start: 01h 01m 58s 357ms, eta: 34m 51s 876ms
+2021-08-18T09:49:26 | INFO | mmf.trainers.callbacks.logistics : progress: 6400/10000, train/hateful_memes/cross_entropy: 0.0013, train/hateful_memes/cross_entropy/avg: 0.0735, train/total_loss: 0.0013, train/total_loss/avg: 0.0735, max mem: 9628.0, experiment: run, epoch: 72, num_updates: 6400, iterations: 6400, max_updates: 10000, lr: 0.00002, ups: 1.79, time: 56s 330ms, time_since_start: 01h 02m 54s 688ms, eta: 34m 066ms
+2021-08-18T09:50:22 | INFO | mmf.trainers.callbacks.logistics : progress: 6500/10000, train/hateful_memes/cross_entropy: 0.0010, train/hateful_memes/cross_entropy/avg: 0.0724, train/total_loss: 0.0010, train/total_loss/avg: 0.0724, max mem: 9628.0, experiment: run, epoch: 74, num_updates: 6500, iterations: 6500, max_updates: 10000, lr: 0.00002, ups: 1.79, time: 56s 676ms, time_since_start: 01h 03m 51s 364ms, eta: 33m 15s 566ms
+2021-08-18T09:51:17 | INFO | mmf.trainers.callbacks.logistics : progress: 6600/10000, train/hateful_memes/cross_entropy: 0.0008, train/hateful_memes/cross_entropy/avg: 0.0713, train/total_loss: 0.0008, train/total_loss/avg: 0.0713, max mem: 9628.0, experiment: run, epoch: 75, num_updates: 6600, iterations: 6600, max_updates: 10000, lr: 0.00002, ups: 1.82, time: 55s 056ms, time_since_start: 01h 04m 46s 420ms, eta: 31m 23s 151ms
+2021-08-18T09:52:13 | INFO | mmf.trainers.callbacks.logistics : progress: 6700/10000, train/hateful_memes/cross_entropy: 0.0008, train/hateful_memes/cross_entropy/avg: 0.0702, train/total_loss: 0.0008, train/total_loss/avg: 0.0702, max mem: 9628.0, experiment: run, epoch: 76, num_updates: 6700, iterations: 6700, max_updates: 10000, lr: 0.00002, ups: 1.82, time: 55s 174ms, time_since_start: 01h 05m 41s 595ms, eta: 30m 31s 685ms
+2021-08-18T09:53:07 | INFO | mmf.trainers.callbacks.logistics : progress: 6800/10000, train/hateful_memes/cross_entropy: 0.0006, train/hateful_memes/cross_entropy/avg: 0.0692, train/total_loss: 0.0006, train/total_loss/avg: 0.0692, max mem: 9628.0, experiment: run, epoch: 77, num_updates: 6800, iterations: 6800, max_updates: 10000, lr: 0.00002, ups: 1.85, time: 54s 899ms, time_since_start: 01h 06m 36s 495ms, eta: 29m 27s 336ms
+2021-08-18T09:54:04 | INFO | mmf.trainers.callbacks.logistics : progress: 6900/10000, train/hateful_memes/cross_entropy: 0.0005, train/hateful_memes/cross_entropy/avg: 0.0682, train/total_loss: 0.0005, train/total_loss/avg: 0.0682, max mem: 9628.0, experiment: run, epoch: 78, num_updates: 6900, iterations: 6900, max_updates: 10000, lr: 0.00002, ups: 1.79, time: 56s 977ms, time_since_start: 01h 07m 33s 472ms, eta: 29m 36s 894ms
+2021-08-18T09:55:01 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T09:55:01 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:55:03 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:55:07 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:55:07 | INFO | mmf.trainers.callbacks.logistics : progress: 7000/10000, train/hateful_memes/cross_entropy: 0.0005, train/hateful_memes/cross_entropy/avg: 0.0672, train/total_loss: 0.0005, train/total_loss/avg: 0.0672, max mem: 9628.0, experiment: run, epoch: 79, num_updates: 7000, iterations: 7000, max_updates: 10000, lr: 0.00002, ups: 1.61, time: 01m 02s 677ms, time_since_start: 01h 08m 36s 149ms, eta: 31m 31s 597ms
+2021-08-18T09:55:07 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T09:55:07 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T09:55:21 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T09:55:21 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T09:55:21 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T09:55:25 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T09:55:29 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T09:55:29 | INFO | mmf.trainers.callbacks.logistics : progress: 7000/10000, val/hateful_memes/cross_entropy: 2.4624, val/total_loss: 2.4624, val/hateful_memes/accuracy: 0.7000, val/hateful_memes/binary_f1: 0.4573, val/hateful_memes/roc_auc: 0.7036, num_updates: 7000, epoch: 79, iterations: 7000, max_updates: 10000, val_time: 22s 346ms, best_update: 3000, best_iteration: 3000, best_val/hateful_memes/roc_auc: 0.730307
+2021-08-18T09:56:22 | INFO | mmf.trainers.callbacks.logistics : progress: 7100/10000, train/hateful_memes/cross_entropy: 0.0005, train/hateful_memes/cross_entropy/avg: 0.0663, train/total_loss: 0.0005, train/total_loss/avg: 0.0663, max mem: 9628.0, experiment: run, epoch: 80, num_updates: 7100, iterations: 7100, max_updates: 10000, lr: 0.00002, ups: 1.92, time: 52s 975ms, time_since_start: 01h 09m 51s 473ms, eta: 25m 45s 505ms
+2021-08-18T09:57:18 | INFO | mmf.trainers.callbacks.logistics : progress: 7200/10000, train/hateful_memes/cross_entropy: 0.0005, train/hateful_memes/cross_entropy/avg: 0.0654, train/total_loss: 0.0005, train/total_loss/avg: 0.0654, max mem: 9628.0, experiment: run, epoch: 81, num_updates: 7200, iterations: 7200, max_updates: 10000, lr: 0.00002, ups: 1.82, time: 55s 901ms, time_since_start: 01h 10m 47s 375ms, eta: 26m 14s 628ms
+2021-08-18T09:58:14 | INFO | mmf.trainers.callbacks.logistics : progress: 7300/10000, train/hateful_memes/cross_entropy: 0.0004, train/hateful_memes/cross_entropy/avg: 0.0645, train/total_loss: 0.0004, train/total_loss/avg: 0.0645, max mem: 9628.0, experiment: run, epoch: 83, num_updates: 7300, iterations: 7300, max_updates: 10000, lr: 0.00002, ups: 1.82, time: 55s 526ms, time_since_start: 01h 11m 42s 902ms, eta: 25m 08s 222ms
+2021-08-18T09:59:11 | INFO | mmf.trainers.callbacks.logistics : progress: 7400/10000, train/hateful_memes/cross_entropy: 0.0004, train/hateful_memes/cross_entropy/avg: 0.0636, train/total_loss: 0.0004, train/total_loss/avg: 0.0636, max mem: 9628.0, experiment: run, epoch: 84, num_updates: 7400, iterations: 7400, max_updates: 10000, lr: 0.00002, ups: 1.79, time: 56s 879ms, time_since_start: 01h 12m 39s 781ms, eta: 24m 47s 742ms
+2021-08-18T10:00:08 | INFO | mmf.trainers.callbacks.logistics : progress: 7500/10000, train/hateful_memes/cross_entropy: 0.0004, train/hateful_memes/cross_entropy/avg: 0.0631, train/total_loss: 0.0004, train/total_loss/avg: 0.0631, max mem: 9628.0, experiment: run, epoch: 85, num_updates: 7500, iterations: 7500, max_updates: 10000, lr: 0.00002, ups: 1.79, time: 56s 989ms, time_since_start: 01h 13m 36s 770ms, eta: 23m 53s 276ms
+2021-08-18T10:01:03 | INFO | mmf.trainers.callbacks.logistics : progress: 7600/10000, train/hateful_memes/cross_entropy: 0.0004, train/hateful_memes/cross_entropy/avg: 0.0623, train/total_loss: 0.0004, train/total_loss/avg: 0.0623, max mem: 9628.0, experiment: run, epoch: 86, num_updates: 7600, iterations: 7600, max_updates: 10000, lr: 0.00002, ups: 1.82, time: 55s 118ms, time_since_start: 01h 14m 31s 889ms, eta: 22m 10s 791ms
+2021-08-18T10:02:00 | INFO | mmf.trainers.callbacks.logistics : progress: 7700/10000, train/hateful_memes/cross_entropy: 0.0004, train/hateful_memes/cross_entropy/avg: 0.0615, train/total_loss: 0.0004, train/total_loss/avg: 0.0615, max mem: 9628.0, experiment: run, epoch: 87, num_updates: 7700, iterations: 7700, max_updates: 10000, lr: 0.00001, ups: 1.75, time: 57s 212ms, time_since_start: 01h 15m 29s 102ms, eta: 22m 03s 782ms
+2021-08-18T10:02:56 | INFO | mmf.trainers.callbacks.logistics : progress: 7800/10000, train/hateful_memes/cross_entropy: 0.0004, train/hateful_memes/cross_entropy/avg: 0.0612, train/total_loss: 0.0004, train/total_loss/avg: 0.0612, max mem: 9628.0, experiment: run, epoch: 88, num_updates: 7800, iterations: 7800, max_updates: 10000, lr: 0.00001, ups: 1.79, time: 56s 163ms, time_since_start: 01h 16m 25s 266ms, eta: 20m 43s 021ms
+2021-08-18T10:03:52 | INFO | mmf.trainers.callbacks.logistics : progress: 7900/10000, train/hateful_memes/cross_entropy: 0.0004, train/hateful_memes/cross_entropy/avg: 0.0605, train/total_loss: 0.0004, train/total_loss/avg: 0.0605, max mem: 9628.0, experiment: run, epoch: 89, num_updates: 7900, iterations: 7900, max_updates: 10000, lr: 0.00001, ups: 1.79, time: 56s 150ms, time_since_start: 01h 17m 21s 416ms, eta: 19m 46s 235ms
+2021-08-18T10:04:50 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T10:04:50 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T10:04:52 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T10:04:56 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T10:04:56 | INFO | mmf.trainers.callbacks.logistics : progress: 8000/10000, train/hateful_memes/cross_entropy: 0.0003, train/hateful_memes/cross_entropy/avg: 0.0597, train/total_loss: 0.0003, train/total_loss/avg: 0.0597, max mem: 9628.0, experiment: run, epoch: 90, num_updates: 8000, iterations: 8000, max_updates: 10000, lr: 0.00001, ups: 1.59, time: 01m 03s 703ms, time_since_start: 01h 18m 25s 119ms, eta: 21m 21s 708ms
+2021-08-18T10:04:56 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T10:04:56 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T10:05:09 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T10:05:09 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:05:10 | INFO | mmf.trainers.callbacks.logistics : progress: 8000/10000, val/hateful_memes/cross_entropy: 2.7646, val/total_loss: 2.7646, val/hateful_memes/accuracy: 0.6926, val/hateful_memes/binary_f1: 0.4684, val/hateful_memes/roc_auc: 0.6981, num_updates: 8000, epoch: 90, iterations: 8000, max_updates: 10000, val_time: 14s 060ms, best_update: 3000, best_iteration: 3000, best_val/hateful_memes/roc_auc: 0.730307
+2021-08-18T10:06:04 | INFO | mmf.trainers.callbacks.logistics : progress: 8100/10000, train/hateful_memes/cross_entropy: 0.0002, train/hateful_memes/cross_entropy/avg: 0.0590, train/total_loss: 0.0002, train/total_loss/avg: 0.0590, max mem: 9628.0, experiment: run, epoch: 92, num_updates: 8100, iterations: 8100, max_updates: 10000, lr: 0.00001, ups: 1.85, time: 54s 220ms, time_since_start: 01h 19m 33s 402ms, eta: 17m 16s 368ms
+2021-08-18T10:07:00 | INFO | mmf.trainers.callbacks.logistics : progress: 8200/10000, train/hateful_memes/cross_entropy: 0.0002, train/hateful_memes/cross_entropy/avg: 0.0582, train/total_loss: 0.0002, train/total_loss/avg: 0.0582, max mem: 9628.0, experiment: run, epoch: 93, num_updates: 8200, iterations: 8200, max_updates: 10000, lr: 0.00001, ups: 1.82, time: 55s 433ms, time_since_start: 01h 20m 28s 836ms, eta: 16m 43s 796ms
+2021-08-18T10:07:57 | INFO | mmf.trainers.callbacks.logistics : progress: 8300/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0575, train/total_loss: 0.0001, train/total_loss/avg: 0.0575, max mem: 9628.0, experiment: run, epoch: 94, num_updates: 8300, iterations: 8300, max_updates: 10000, lr: 0.00001, ups: 1.75, time: 57s 502ms, time_since_start: 01h 21m 26s 338ms, eta: 16m 23s 400ms
+2021-08-18T10:08:53 | INFO | mmf.trainers.callbacks.logistics : progress: 8400/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0569, train/total_loss: 0.0001, train/total_loss/avg: 0.0569, max mem: 9628.0, experiment: run, epoch: 95, num_updates: 8400, iterations: 8400, max_updates: 10000, lr: 0.00001, ups: 1.82, time: 55s 917ms, time_since_start: 01h 22m 22s 256ms, eta: 15m 052ms
+2021-08-18T10:09:48 | INFO | mmf.trainers.callbacks.logistics : progress: 8500/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0562, train/total_loss: 0.0001, train/total_loss/avg: 0.0562, max mem: 9628.0, experiment: run, epoch: 96, num_updates: 8500, iterations: 8500, max_updates: 10000, lr: 0.00001, ups: 1.85, time: 54s 894ms, time_since_start: 01h 23m 17s 150ms, eta: 13m 48s 356ms
+2021-08-18T10:10:43 | INFO | mmf.trainers.callbacks.logistics : progress: 8600/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0555, train/total_loss: 0.0001, train/total_loss/avg: 0.0555, max mem: 9628.0, experiment: run, epoch: 97, num_updates: 8600, iterations: 8600, max_updates: 10000, lr: 0.00001, ups: 1.85, time: 54s 789ms, time_since_start: 01h 24m 11s 940ms, eta: 12m 51s 655ms
+2021-08-18T10:11:39 | INFO | mmf.trainers.callbacks.logistics : progress: 8700/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0549, train/total_loss: 0.0001, train/total_loss/avg: 0.0549, max mem: 9628.0, experiment: run, epoch: 98, num_updates: 8700, iterations: 8700, max_updates: 10000, lr: 0.00001, ups: 1.82, time: 55s 759ms, time_since_start: 01h 25m 07s 699ms, eta: 12m 09s 220ms
+2021-08-18T10:12:34 | INFO | mmf.trainers.callbacks.logistics : progress: 8800/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0543, train/total_loss: 0.0001, train/total_loss/avg: 0.0543, max mem: 9628.0, experiment: run, epoch: 99, num_updates: 8800, iterations: 8800, max_updates: 10000, lr: 0.00001, ups: 1.82, time: 55s 432ms, time_since_start: 01h 26m 03s 132ms, eta: 11m 09s 185ms
+2021-08-18T10:13:31 | INFO | mmf.trainers.callbacks.logistics : progress: 8900/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0539, train/total_loss: 0.0001, train/total_loss/avg: 0.0539, max mem: 9628.0, experiment: run, epoch: 100, num_updates: 8900, iterations: 8900, max_updates: 10000, lr: 0.00001, ups: 1.75, time: 57s 298ms, time_since_start: 01h 27m 431ms, eta: 10m 34s 068ms
+2021-08-18T10:14:28 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T10:14:28 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T10:14:30 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T10:14:34 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T10:14:34 | INFO | mmf.trainers.callbacks.logistics : progress: 9000/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0533, train/total_loss: 0.0001, train/total_loss/avg: 0.0533, max mem: 9628.0, experiment: run, epoch: 102, num_updates: 9000, iterations: 9000, max_updates: 10000, lr: 0.00001, ups: 1.61, time: 01m 02s 818ms, time_since_start: 01h 28m 03s 249ms, eta: 10m 31s 954ms
+2021-08-18T10:14:34 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T10:14:34 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T10:14:48 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T10:14:48 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:14:49 | INFO | mmf.trainers.callbacks.logistics : progress: 9000/10000, val/hateful_memes/cross_entropy: 3.1402, val/total_loss: 3.1402, val/hateful_memes/accuracy: 0.6852, val/hateful_memes/binary_f1: 0.4582, val/hateful_memes/roc_auc: 0.6894, num_updates: 9000, epoch: 102, iterations: 9000, max_updates: 10000, val_time: 14s 520ms, best_update: 3000, best_iteration: 3000, best_val/hateful_memes/roc_auc: 0.730307
+2021-08-18T10:15:43 | INFO | mmf.trainers.callbacks.logistics : progress: 9100/10000, train/hateful_memes/cross_entropy: 0.0001, train/hateful_memes/cross_entropy/avg: 0.0527, train/total_loss: 0.0001, train/total_loss/avg: 0.0527, max mem: 9628.0, experiment: run, epoch: 103, num_updates: 9100, iterations: 9100, max_updates: 10000, lr: 0.00001, ups: 1.85, time: 54s 454ms, time_since_start: 01h 29m 12s 226ms, eta: 08m 13s 029ms
+2021-08-18T10:16:40 | INFO | mmf.trainers.callbacks.logistics : progress: 9200/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0522, train/total_loss: 0.0000, train/total_loss/avg: 0.0522, max mem: 9628.0, experiment: run, epoch: 104, num_updates: 9200, iterations: 9200, max_updates: 10000, lr: 0.00001, ups: 1.79, time: 56s 630ms, time_since_start: 01h 30m 08s 857ms, eta: 07m 35s 764ms
+2021-08-18T10:17:36 | INFO | mmf.trainers.callbacks.logistics : progress: 9300/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0516, train/total_loss: 0.0000, train/total_loss/avg: 0.0516, max mem: 9628.0, experiment: run, epoch: 105, num_updates: 9300, iterations: 9300, max_updates: 10000, lr: 0., ups: 1.79, time: 56s 043ms, time_since_start: 01h 31m 04s 900ms, eta: 06m 34s 657ms
+2021-08-18T10:18:32 | INFO | mmf.trainers.callbacks.logistics : progress: 9400/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0510, train/total_loss: 0.0000, train/total_loss/avg: 0.0510, max mem: 9628.0, experiment: run, epoch: 106, num_updates: 9400, iterations: 9400, max_updates: 10000, lr: 0., ups: 1.82, time: 55s 885ms, time_since_start: 01h 32m 786ms, eta: 05m 37s 325ms
+2021-08-18T10:19:27 | INFO | mmf.trainers.callbacks.logistics : progress: 9500/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0505, train/total_loss: 0.0000, train/total_loss/avg: 0.0505, max mem: 9628.0, experiment: run, epoch: 107, num_updates: 9500, iterations: 9500, max_updates: 10000, lr: 0., ups: 1.82, time: 55s 658ms, time_since_start: 01h 32m 56s 444ms, eta: 04m 39s 960ms
+2021-08-18T10:20:22 | INFO | mmf.trainers.callbacks.logistics : progress: 9600/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0500, train/total_loss: 0.0000, train/total_loss/avg: 0.0500, max mem: 9628.0, experiment: run, epoch: 108, num_updates: 9600, iterations: 9600, max_updates: 10000, lr: 0., ups: 1.85, time: 54s 782ms, time_since_start: 01h 33m 51s 227ms, eta: 03m 40s 446ms
+2021-08-18T10:21:18 | INFO | mmf.trainers.callbacks.logistics : progress: 9700/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0495, train/total_loss: 0.0000, train/total_loss/avg: 0.0495, max mem: 9628.0, experiment: run, epoch: 109, num_updates: 9700, iterations: 9700, max_updates: 10000, lr: 0., ups: 1.82, time: 55s 464ms, time_since_start: 01h 34m 46s 692ms, eta: 02m 47s 393ms
+2021-08-18T10:22:14 | INFO | mmf.trainers.callbacks.logistics : progress: 9800/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0490, train/total_loss: 0.0000, train/total_loss/avg: 0.0490, max mem: 9628.0, experiment: run, epoch: 111, num_updates: 9800, iterations: 9800, max_updates: 10000, lr: 0., ups: 1.79, time: 56s 359ms, time_since_start: 01h 35m 43s 051ms, eta: 01m 53s 395ms
+2021-08-18T10:23:11 | INFO | mmf.trainers.callbacks.logistics : progress: 9900/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0485, train/total_loss: 0.0000, train/total_loss/avg: 0.0485, max mem: 9628.0, experiment: run, epoch: 112, num_updates: 9900, iterations: 9900, max_updates: 10000, lr: 0., ups: 1.79, time: 56s 653ms, time_since_start: 01h 36m 39s 705ms, eta: 56s 993ms
+2021-08-18T10:24:07 | INFO | mmf.trainers.callbacks.checkpoint : Checkpoint time. Saving a checkpoint.
+2021-08-18T10:24:07 | INFO | mmf.utils.checkpoint : Checkpoint save operation started!
+2021-08-18T10:24:08 | INFO | mmf.utils.checkpoint : Saving current checkpoint
+2021-08-18T10:24:12 | INFO | mmf.utils.checkpoint : Checkpoint save operation finished!
+2021-08-18T10:24:12 | INFO | mmf.trainers.callbacks.logistics : progress: 10000/10000, train/hateful_memes/cross_entropy: 0.0000, train/hateful_memes/cross_entropy/avg: 0.0480, train/total_loss: 0.0000, train/total_loss/avg: 0.0480, max mem: 9628.0, experiment: run, epoch: 113, num_updates: 10000, iterations: 10000, max_updates: 10000, lr: 0., ups: 1.64, time: 01m 01s 840ms, time_since_start: 01h 37m 41s 545ms, eta: 0ms
+2021-08-18T10:24:12 | INFO | mmf.trainers.core.training_loop : Evaluation time. Running on full validation set...
+2021-08-18T10:24:12 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T10:24:26 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T10:24:26 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:24:27 | INFO | mmf.trainers.callbacks.logistics : progress: 10000/10000, val/hateful_memes/cross_entropy: 3.1437, val/total_loss: 3.1437, val/hateful_memes/accuracy: 0.6944, val/hateful_memes/binary_f1: 0.4691, val/hateful_memes/roc_auc: 0.6924, num_updates: 10000, epoch: 113, iterations: 10000, max_updates: 10000, val_time: 14s 447ms, best_update: 3000, best_iteration: 3000, best_val/hateful_memes/roc_auc: 0.730307
+2021-08-18T10:24:27 | INFO | mmf.trainers.core.training_loop : Stepping into final validation check
+2021-08-18T10:24:27 | INFO | mmf.utils.checkpoint : Restoring checkpoint
+2021-08-18T10:24:27 | INFO | mmf.utils.checkpoint : Loading checkpoint
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.position_ids from model.bert.embeddings.position_ids
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.word_embeddings.weight from model.bert.embeddings.word_embeddings.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.position_embeddings.weight from model.bert.embeddings.position_embeddings.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.token_type_embeddings.weight from model.bert.embeddings.token_type_embeddings.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.LayerNorm.weight from model.bert.embeddings.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.LayerNorm.bias from model.bert.embeddings.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.token_type_embeddings_visual.weight from model.bert.embeddings.token_type_embeddings_visual.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.position_embeddings_visual.weight from model.bert.embeddings.position_embeddings_visual.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.projection.weight from model.bert.embeddings.projection.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.embeddings.projection.bias from model.bert.embeddings.projection.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.query.weight from model.bert.encoder.layer.0.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.query.bias from model.bert.encoder.layer.0.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.key.weight from model.bert.encoder.layer.0.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.key.bias from model.bert.encoder.layer.0.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.value.weight from model.bert.encoder.layer.0.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.self.value.bias from model.bert.encoder.layer.0.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.output.dense.weight from model.bert.encoder.layer.0.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.output.dense.bias from model.bert.encoder.layer.0.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.output.LayerNorm.weight from model.bert.encoder.layer.0.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.attention.output.LayerNorm.bias from model.bert.encoder.layer.0.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.intermediate.dense.weight from model.bert.encoder.layer.0.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.intermediate.dense.bias from model.bert.encoder.layer.0.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.output.dense.weight from model.bert.encoder.layer.0.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.output.dense.bias from model.bert.encoder.layer.0.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.output.LayerNorm.weight from model.bert.encoder.layer.0.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.0.output.LayerNorm.bias from model.bert.encoder.layer.0.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.query.weight from model.bert.encoder.layer.1.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.query.bias from model.bert.encoder.layer.1.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.key.weight from model.bert.encoder.layer.1.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.key.bias from model.bert.encoder.layer.1.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.value.weight from model.bert.encoder.layer.1.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.self.value.bias from model.bert.encoder.layer.1.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.output.dense.weight from model.bert.encoder.layer.1.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.output.dense.bias from model.bert.encoder.layer.1.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.output.LayerNorm.weight from model.bert.encoder.layer.1.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.attention.output.LayerNorm.bias from model.bert.encoder.layer.1.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.intermediate.dense.weight from model.bert.encoder.layer.1.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.intermediate.dense.bias from model.bert.encoder.layer.1.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.output.dense.weight from model.bert.encoder.layer.1.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.output.dense.bias from model.bert.encoder.layer.1.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.output.LayerNorm.weight from model.bert.encoder.layer.1.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.1.output.LayerNorm.bias from model.bert.encoder.layer.1.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.query.weight from model.bert.encoder.layer.2.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.query.bias from model.bert.encoder.layer.2.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.key.weight from model.bert.encoder.layer.2.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.key.bias from model.bert.encoder.layer.2.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.value.weight from model.bert.encoder.layer.2.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.self.value.bias from model.bert.encoder.layer.2.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.output.dense.weight from model.bert.encoder.layer.2.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.output.dense.bias from model.bert.encoder.layer.2.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.output.LayerNorm.weight from model.bert.encoder.layer.2.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.attention.output.LayerNorm.bias from model.bert.encoder.layer.2.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.intermediate.dense.weight from model.bert.encoder.layer.2.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.intermediate.dense.bias from model.bert.encoder.layer.2.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.output.dense.weight from model.bert.encoder.layer.2.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.output.dense.bias from model.bert.encoder.layer.2.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.output.LayerNorm.weight from model.bert.encoder.layer.2.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.2.output.LayerNorm.bias from model.bert.encoder.layer.2.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.query.weight from model.bert.encoder.layer.3.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.query.bias from model.bert.encoder.layer.3.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.key.weight from model.bert.encoder.layer.3.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.key.bias from model.bert.encoder.layer.3.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.value.weight from model.bert.encoder.layer.3.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.self.value.bias from model.bert.encoder.layer.3.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.output.dense.weight from model.bert.encoder.layer.3.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.output.dense.bias from model.bert.encoder.layer.3.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.output.LayerNorm.weight from model.bert.encoder.layer.3.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.attention.output.LayerNorm.bias from model.bert.encoder.layer.3.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.intermediate.dense.weight from model.bert.encoder.layer.3.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.intermediate.dense.bias from model.bert.encoder.layer.3.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.output.dense.weight from model.bert.encoder.layer.3.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.output.dense.bias from model.bert.encoder.layer.3.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.output.LayerNorm.weight from model.bert.encoder.layer.3.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.3.output.LayerNorm.bias from model.bert.encoder.layer.3.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.query.weight from model.bert.encoder.layer.4.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.query.bias from model.bert.encoder.layer.4.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.key.weight from model.bert.encoder.layer.4.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.key.bias from model.bert.encoder.layer.4.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.value.weight from model.bert.encoder.layer.4.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.self.value.bias from model.bert.encoder.layer.4.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.output.dense.weight from model.bert.encoder.layer.4.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.output.dense.bias from model.bert.encoder.layer.4.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.output.LayerNorm.weight from model.bert.encoder.layer.4.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.attention.output.LayerNorm.bias from model.bert.encoder.layer.4.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.intermediate.dense.weight from model.bert.encoder.layer.4.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.intermediate.dense.bias from model.bert.encoder.layer.4.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.output.dense.weight from model.bert.encoder.layer.4.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.output.dense.bias from model.bert.encoder.layer.4.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.output.LayerNorm.weight from model.bert.encoder.layer.4.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.4.output.LayerNorm.bias from model.bert.encoder.layer.4.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.query.weight from model.bert.encoder.layer.5.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.query.bias from model.bert.encoder.layer.5.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.key.weight from model.bert.encoder.layer.5.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.key.bias from model.bert.encoder.layer.5.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.value.weight from model.bert.encoder.layer.5.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.self.value.bias from model.bert.encoder.layer.5.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.output.dense.weight from model.bert.encoder.layer.5.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.output.dense.bias from model.bert.encoder.layer.5.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.output.LayerNorm.weight from model.bert.encoder.layer.5.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.attention.output.LayerNorm.bias from model.bert.encoder.layer.5.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.intermediate.dense.weight from model.bert.encoder.layer.5.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.intermediate.dense.bias from model.bert.encoder.layer.5.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.output.dense.weight from model.bert.encoder.layer.5.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.output.dense.bias from model.bert.encoder.layer.5.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.output.LayerNorm.weight from model.bert.encoder.layer.5.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.5.output.LayerNorm.bias from model.bert.encoder.layer.5.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.query.weight from model.bert.encoder.layer.6.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.query.bias from model.bert.encoder.layer.6.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.key.weight from model.bert.encoder.layer.6.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.key.bias from model.bert.encoder.layer.6.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.value.weight from model.bert.encoder.layer.6.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.self.value.bias from model.bert.encoder.layer.6.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.output.dense.weight from model.bert.encoder.layer.6.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.output.dense.bias from model.bert.encoder.layer.6.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.output.LayerNorm.weight from model.bert.encoder.layer.6.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.attention.output.LayerNorm.bias from model.bert.encoder.layer.6.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.intermediate.dense.weight from model.bert.encoder.layer.6.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.intermediate.dense.bias from model.bert.encoder.layer.6.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.output.dense.weight from model.bert.encoder.layer.6.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.output.dense.bias from model.bert.encoder.layer.6.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.output.LayerNorm.weight from model.bert.encoder.layer.6.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.6.output.LayerNorm.bias from model.bert.encoder.layer.6.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.query.weight from model.bert.encoder.layer.7.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.query.bias from model.bert.encoder.layer.7.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.key.weight from model.bert.encoder.layer.7.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.key.bias from model.bert.encoder.layer.7.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.value.weight from model.bert.encoder.layer.7.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.self.value.bias from model.bert.encoder.layer.7.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.output.dense.weight from model.bert.encoder.layer.7.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.output.dense.bias from model.bert.encoder.layer.7.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.output.LayerNorm.weight from model.bert.encoder.layer.7.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.attention.output.LayerNorm.bias from model.bert.encoder.layer.7.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.intermediate.dense.weight from model.bert.encoder.layer.7.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.intermediate.dense.bias from model.bert.encoder.layer.7.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.output.dense.weight from model.bert.encoder.layer.7.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.output.dense.bias from model.bert.encoder.layer.7.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.output.LayerNorm.weight from model.bert.encoder.layer.7.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.7.output.LayerNorm.bias from model.bert.encoder.layer.7.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.query.weight from model.bert.encoder.layer.8.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.query.bias from model.bert.encoder.layer.8.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.key.weight from model.bert.encoder.layer.8.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.key.bias from model.bert.encoder.layer.8.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.value.weight from model.bert.encoder.layer.8.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.self.value.bias from model.bert.encoder.layer.8.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.output.dense.weight from model.bert.encoder.layer.8.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.output.dense.bias from model.bert.encoder.layer.8.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.output.LayerNorm.weight from model.bert.encoder.layer.8.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.attention.output.LayerNorm.bias from model.bert.encoder.layer.8.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.intermediate.dense.weight from model.bert.encoder.layer.8.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.intermediate.dense.bias from model.bert.encoder.layer.8.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.output.dense.weight from model.bert.encoder.layer.8.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.output.dense.bias from model.bert.encoder.layer.8.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.output.LayerNorm.weight from model.bert.encoder.layer.8.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.8.output.LayerNorm.bias from model.bert.encoder.layer.8.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.query.weight from model.bert.encoder.layer.9.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.query.bias from model.bert.encoder.layer.9.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.key.weight from model.bert.encoder.layer.9.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.key.bias from model.bert.encoder.layer.9.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.value.weight from model.bert.encoder.layer.9.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.self.value.bias from model.bert.encoder.layer.9.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.output.dense.weight from model.bert.encoder.layer.9.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.output.dense.bias from model.bert.encoder.layer.9.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.output.LayerNorm.weight from model.bert.encoder.layer.9.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.attention.output.LayerNorm.bias from model.bert.encoder.layer.9.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.intermediate.dense.weight from model.bert.encoder.layer.9.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.intermediate.dense.bias from model.bert.encoder.layer.9.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.output.dense.weight from model.bert.encoder.layer.9.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.output.dense.bias from model.bert.encoder.layer.9.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.output.LayerNorm.weight from model.bert.encoder.layer.9.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.9.output.LayerNorm.bias from model.bert.encoder.layer.9.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.query.weight from model.bert.encoder.layer.10.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.query.bias from model.bert.encoder.layer.10.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.key.weight from model.bert.encoder.layer.10.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.key.bias from model.bert.encoder.layer.10.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.value.weight from model.bert.encoder.layer.10.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.self.value.bias from model.bert.encoder.layer.10.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.output.dense.weight from model.bert.encoder.layer.10.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.output.dense.bias from model.bert.encoder.layer.10.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.output.LayerNorm.weight from model.bert.encoder.layer.10.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.attention.output.LayerNorm.bias from model.bert.encoder.layer.10.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.intermediate.dense.weight from model.bert.encoder.layer.10.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.intermediate.dense.bias from model.bert.encoder.layer.10.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.output.dense.weight from model.bert.encoder.layer.10.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.output.dense.bias from model.bert.encoder.layer.10.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.output.LayerNorm.weight from model.bert.encoder.layer.10.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.10.output.LayerNorm.bias from model.bert.encoder.layer.10.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.query.weight from model.bert.encoder.layer.11.attention.self.query.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.query.bias from model.bert.encoder.layer.11.attention.self.query.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.key.weight from model.bert.encoder.layer.11.attention.self.key.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.key.bias from model.bert.encoder.layer.11.attention.self.key.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.value.weight from model.bert.encoder.layer.11.attention.self.value.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.self.value.bias from model.bert.encoder.layer.11.attention.self.value.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.output.dense.weight from model.bert.encoder.layer.11.attention.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.output.dense.bias from model.bert.encoder.layer.11.attention.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.output.LayerNorm.weight from model.bert.encoder.layer.11.attention.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.attention.output.LayerNorm.bias from model.bert.encoder.layer.11.attention.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.intermediate.dense.weight from model.bert.encoder.layer.11.intermediate.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.intermediate.dense.bias from model.bert.encoder.layer.11.intermediate.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.output.dense.weight from model.bert.encoder.layer.11.output.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.output.dense.bias from model.bert.encoder.layer.11.output.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.output.LayerNorm.weight from model.bert.encoder.layer.11.output.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.encoder.layer.11.output.LayerNorm.bias from model.bert.encoder.layer.11.output.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.pooler.dense.weight from model.bert.pooler.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.bert.pooler.dense.bias from model.bert.pooler.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.0.dense.weight from model.classifier.0.dense.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.0.dense.bias from model.classifier.0.dense.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.0.LayerNorm.weight from model.classifier.0.LayerNorm.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.0.LayerNorm.bias from model.classifier.0.LayerNorm.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.1.weight from model.classifier.1.weight
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Will load key module.model.classifier.1.bias from model.classifier.1.bias
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Checkpoint loaded.
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Current num updates: 3000
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Current iteration: 3000
+2021-08-18T10:24:28 | INFO | mmf.utils.checkpoint : Current epoch: 34
+2021-08-18T10:24:28 | INFO | mmf.trainers.mmf_trainer : Starting inference on val set
+2021-08-18T10:24:28 | INFO | mmf.common.test_reporter : Predicting for hateful_memes
+2021-08-18T10:24:43 | INFO | mmf.trainers.core.evaluation_loop : Finished training. Loaded 6
+2021-08-18T10:24:43 | INFO | mmf.trainers.core.evaluation_loop :  -- skipped 0 batches.
+2021-08-18T10:24:43 | INFO | mmf.trainers.callbacks.logistics : progress: 3000/10000, val/hateful_memes/cross_entropy: 2.0739, val/total_loss: 2.0739, val/hateful_memes/accuracy: 0.7056, val/hateful_memes/binary_f1: 0.4900, val/hateful_memes/roc_auc: 0.7303
+2021-08-18T10:24:43 | INFO | mmf.trainers.callbacks.logistics : Finished run in 01h 38m 12s 462ms
