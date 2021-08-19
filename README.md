@@ -31,10 +31,12 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Universidade Federal do Amazonas</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Instituto de Computação
+    <br />
+    Programa de Pós Graduação em Informática
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
@@ -173,10 +175,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
+Paulo Cezar de Queiroz Hermida - [@paulohermida](https://twitter.com/your_username) - paulo.hermida@ufam.icomp.edu.br
 
 
 <!-- ACKNOWLEDGEMENTS -->
